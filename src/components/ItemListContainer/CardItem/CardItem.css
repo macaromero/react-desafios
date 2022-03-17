@@ -1,0 +1,12 @@
+.cardItem {
+    margin-top: 9%;
+    max-width: 345px;
+}
+
+.img-cardItem {
+    height: 280px;
+}
+
+.btn-cardItem {
+    justify-content: center;
+}

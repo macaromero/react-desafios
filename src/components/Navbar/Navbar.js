@@ -1,28 +1,28 @@
 import * as React from 'react';
 import './Navbar.css';
-import logo from "../logo.png";
+import logo from "../../images/logo.png";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import PersonIcon from '@mui/icons-material/Person';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
-import Paper from '@mui/material/Paper';
+import CartWidget from './CartWidget/CartWidget';
 
 
 
-
-function Navbar() {
+const Navbar = () => {
+    let menuStatus = false;
     const menu = (event) => {
         let menu = document.querySelector("#menu-navbar");
-        if (menu.getAttribute("class") == "d-none") {
-            menu.removeAttribute("class", "d-none")
+        if (menuStatus == false) {
+            menu.removeAttribute("class", "d-none");
+            menuStatus = true;
         } else {
-            menu.setAttribute("class", "d-none")
+            menu.setAttribute("class", "d-none");
+            menuStatus = false;
         }
     };
     
@@ -51,9 +51,7 @@ function Navbar() {
                         <img src={logo} className="logo-navbar"/>
                     </div>
                     <div className='logoMenu-navbar'>
-                        <IconButton size="large">
-                                <ShoppingCartIcon />
-                        </IconButton>
+                        <CartWidget/>
                     </div>
                     <div className='logoMenu-navbar'>
                         <IconButton size="large">
@@ -64,7 +62,7 @@ function Navbar() {
             </AppBar>
         </Box>
     );
-}
+};
 
 export default Navbar;
 
