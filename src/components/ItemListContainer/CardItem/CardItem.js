@@ -3,10 +3,17 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import './CardItem.css';
+import ItemCount from './ItemCount/ItemCount';
+ 
+const CardItem = ({imgUrl, imgAlt, title, price, stock, counter}) => {
 
-const CardItem = ({imgUrl, imgAlt, title, price}) => {
+  const onAdd = (counter) => {
+    if (counter <= stock) {
+      console.log(`Se agregaron ${counter} ${title} al carrito`);
+    }
+  }
+
   return (
     <Card className="cardItem">
       <CardMedia
@@ -16,7 +23,7 @@ const CardItem = ({imgUrl, imgAlt, title, price}) => {
         image={imgUrl}
         className="img-cardItem"
       />
-      <CardContent>
+      <CardContent className='cardContent-cardItem'>
           <div>
               <h1>{title}</h1>
           </div>
@@ -28,7 +35,7 @@ const CardItem = ({imgUrl, imgAlt, title, price}) => {
           </div>
       </CardContent>
       <CardActions className='btn-cardItem'>
-        <Button size="large">Agregar al carrito</Button>
+        <ItemCount stock={stock} initial = "1" onAdd={onAdd}/>
       </CardActions>
     </Card>
   );

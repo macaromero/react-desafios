@@ -1,0 +1,30 @@
+.container-itemCount {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: inherit;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+}
+
+.row-itemCount {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.btn-itemCount {
+    padding: 0;
+    min-width: 40px;
+}
+
+.col-itemCount {
+    width: 100%;
+}
+
+.btnBuy-itemCount {
+    width: 71%;
+}

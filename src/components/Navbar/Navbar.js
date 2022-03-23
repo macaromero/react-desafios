@@ -17,7 +17,7 @@ const Navbar = () => {
     let menuStatus = false;
     const menu = (event) => {
         let menu = document.querySelector("#menu-navbar");
-        if (menuStatus == false) {
+        if (menuStatus === false) {
             menu.removeAttribute("class", "d-none");
             menuStatus = true;
         } else {
@@ -48,7 +48,7 @@ const Navbar = () => {
                                 <MenuItem>Contacto</MenuItem>
                             </MenuList>
                         </div>
-                        <img src={logo} className="logo-navbar"/>
+                        <img src={logo} className="logo-navbar" alt='Logo Mecha Calzados'/>
                     </div>
                     <div className='logoMenu-navbar'>
                         <CartWidget/>

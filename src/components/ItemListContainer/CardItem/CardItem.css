@@ -9,4 +9,10 @@
 
 .btn-cardItem {
     justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.cardContent-cardItem {
+    padding-bottom: 0 !important;
 }
