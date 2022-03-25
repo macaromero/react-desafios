@@ -3,35 +3,38 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import './CardItem.css';
+import './Item.css';
 import ItemCount from './ItemCount/ItemCount';
  
-const CardItem = ({imgUrl, imgAlt, title, price, stock, counter}) => {
+const Item = ({props}) => {
+
+  const {imagen, imagenAlt, nombre, precio, stock} = props;
 
   const onAdd = (counter) => {
     if (counter <= stock) {
-      console.log(`Se agregaron ${counter} ${title} al carrito`);
+      console.log(`Se agregaron ${counter} ${nombre} al carrito`);
     }
   }
 
   return (
     <Card className="cardItem">
-      <CardMedia
+      <div className='imgDiv-cardItem'>
+        <CardMedia
         component="img"
-        alt={imgAlt}
-        height="140"
-        image={imgUrl}
+        alt={imagenAlt}
+        image={imagen}
         className="img-cardItem"
-      />
+        />
+      </div>
       <CardContent className='cardContent-cardItem'>
           <div>
-              <h1>{title}</h1>
+              <h2 className='price-cardItem'>${precio}</h2>
           </div>
           <div>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore asperiores culpa possimus consequatur.</p>
+              <h1 className='title-cardItem'>{nombre}</h1>
           </div>
           <div>
-              <h2>${price}</h2>
+              <p className='description-cardItem'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore asperiores culpa possimus consequatur.</p>
           </div>
       </CardContent>
       <CardActions className='btn-cardItem'>
@@ -41,4 +44,4 @@ const CardItem = ({imgUrl, imgAlt, title, price, stock, counter}) => {
   );
 };
 
-export default CardItem;
+export default Item;

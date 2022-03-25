@@ -5,6 +5,7 @@
     align-items: center;
     width: 100%;
     justify-content: center;
+    margin-bottom: 2%;
 }
 
 .row-itemCount {
@@ -19,6 +20,12 @@
 .btn-itemCount {
     padding: 0;
     min-width: 40px;
+    border-color: rgb(209, 166, 170) !important;
+    color: rgb(209, 166, 170) !important;
+}
+
+.number-itemCount {
+    color: rgba(0, 0, 0, 0.54);
 }
 
 .col-itemCount {
@@ -27,4 +34,6 @@
 
 .btnBuy-itemCount {
     width: 71%;
+    background-color: rgb(235, 194, 198) !important;
+    color: rgb(176, 124, 129) !important;
 }

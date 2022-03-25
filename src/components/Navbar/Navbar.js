@@ -1,6 +1,5 @@
 import * as React from 'react';
 import './Navbar.css';
-import logo from "../../images/logo.png";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -27,40 +26,42 @@ const Navbar = () => {
     };
     
     return (
-        <Box className='box-navbar'>
-            <AppBar position="static">
-                <Toolbar className='navbar'>
-                    <div className='logoMenu-navbar'>
-                        <IconButton
-                        id='logoMenu-navbar'
-                        size="large"
-                        edge="start"
-                        aria-label="menu"
-                        sx={{ mr: 2 }}
-                        onClick={menu}                        
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <div className='d-none' id='menu-navbar'>
-                            <MenuList className='listaMenu-navbar'>
-                                <MenuItem>Productos</MenuItem>
-                                <MenuItem>Sobre nosotros</MenuItem>
-                                <MenuItem>Contacto</MenuItem>
-                            </MenuList>
+        <header>
+            <Box className='box-navbar'>
+                <AppBar position="static">
+                    <Toolbar className='navbar'>
+                        <div className='logoMenu-navbar'>
+                            <IconButton
+                            id='logoMenu-navbar'
+                            size="large"
+                            edge="start"
+                            aria-label="menu"
+                            sx={{ mr: 2 }}
+                            onClick={menu}                        
+                            >
+                                <MenuIcon />
+                            </IconButton>
+                            <div className='d-none' id='menu-navbar'>
+                                <MenuList className='listaMenu-navbar'>
+                                    <MenuItem>Productos</MenuItem>
+                                    <MenuItem>Sobre nosotros</MenuItem>
+                                    <MenuItem>Contacto</MenuItem>
+                                </MenuList>
+                            </div>
+                            <img src="./images/logo.png" className="logo-navbar" alt='Logo Mecha Calzados'/>
                         </div>
-                        <img src={logo} className="logo-navbar" alt='Logo Mecha Calzados'/>
-                    </div>
-                    <div className='logoMenu-navbar'>
-                        <CartWidget/>
-                    </div>
-                    <div className='logoMenu-navbar'>
-                        <IconButton size="large">
-                                <PersonIcon />
-                        </IconButton>
-                    </div>
-                </Toolbar>
-            </AppBar>
-        </Box>
+                        <div className='logoMenu-navbar'>
+                            <CartWidget/>
+                        </div>
+                        <div className='logoMenu-navbar'>
+                            <IconButton size="large">
+                                    <PersonIcon />
+                            </IconButton>
+                        </div>
+                    </Toolbar>
+                </AppBar>
+            </Box>
+        </header>
     );
 };
 

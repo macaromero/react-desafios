@@ -1,0 +1,452 @@
+[
+    {
+        "id": 1,
+        "nombre": "Bota Chavito",
+        "color": "Celeste",
+        "categoria": "Botas",
+        "imagen": "./images/products/bota-chavito-celeste.jpg",
+        "imagenAlt": "Botas color celeste",
+        "precio": 4500,
+        "stock": 14 
+    },
+    {
+        "id": 2,
+        "nombre": "Bota Chavito",
+        "color": "Negro",
+        "categoria": "Botas",
+        "imagen": "./images/products/bota-chavito-negro.jpg",
+        "imagenAlt": "Botas color negro",
+        "precio": 4500,
+        "stock": 20 
+    },
+    {
+        "id": 3,
+        "nombre": "Bota Chavito",
+        "color": "Rojo",
+        "categoria": "Botas",
+        "imagen": "./images/products/bota-chavito-rojo.jpg",
+        "imagenAlt": "Botas color rojo",
+        "precio": 4500,
+        "stock": 14 
+    },
+    {
+        "id": 4,
+        "nombre": "Bota Chavito",
+        "color": "Verde",
+        "categoria": "Botas",
+        "imagen": "./images/products/bota-chavito-verde.jpg",
+        "imagenAlt": "Botas color verde",
+        "precio": 4500,
+        "stock": 14 
+    },
+    {
+        "id": 5,
+        "nombre": "Ojota Arena",
+        "color": "Anaranjado",
+        "categoria": "Ojotas",
+        "imagen": "./images/products/ojota-arena-anaranjado.jpg",
+        "imagenAlt": "Ojotas color anaranjado",
+        "precio": 1200,
+        "stock": 10 
+    },
+    {
+        "id": 6,
+        "nombre": "Ojota Arena",
+        "color": "Marron",
+        "categoria": "Ojotas",
+        "imagen": "./images/products/ojota-arena-marron.jpg",
+        "imagenAlt": "Ojotas color marrón",
+        "precio": 1200,
+        "stock": 10 
+    },
+    {
+        "id": 7,
+        "nombre": "Ojota Arena",
+        "color": "Negro",
+        "categoria": "Ojotas",
+        "imagen": "./images/products/ojota-arena-negro.jpg",
+        "imagenAlt": "Ojotas color negro",
+        "precio": 1200,
+        "stock": 10 
+    },
+    {
+        "id": 8,
+        "nombre": "Ojota Arena",
+        "color": "Rosa",
+        "categoria": "Ojotas",
+        "imagen": "./images/products/ojota-arena-rosa.jpg",
+        "imagenAlt": "Ojotas color rosa",
+        "precio": 1200,
+        "stock": 10  
+    },
+    {
+        "id": 9,
+        "nombre": "Ojota Arena",
+        "color": "Verde",
+        "categoria": "Ojotas",
+        "imagen": "./images/products/ojota-arena-verde.jpg",
+        "imagenAlt": "Ojotas color verde",
+        "precio": 1200,
+        "stock": 10 
+    },
+    {
+        "id": 10,
+        "nombre": "Sandalia África",
+        "color": "Camel",
+        "categoria": "Sandalias",
+        "imagen": "./images/products/sandalia-africa-camel.jpg",
+        "imagenAlt": "Sandalias color camel",
+        "precio": 3200,
+        "stock": 20 
+    },
+    {
+        "id": 11,
+        "nombre": "Sandalia África",
+        "color": "Negro",
+        "categoria": "Sandalias",
+        "imagen": "./images/products/sandalia-africa-negro.jpg",
+        "imagenAlt": "Sandalias color negro",
+        "precio": 3200,
+        "stock": 20 
+    },
+    {
+        "id": 12,
+        "nombre": "Sandalia Bella",
+        "color": "Camel",
+        "categoria": "Sandalias",
+        "imagen": "./images/products/sandalia-bella-camel.jpg",
+        "imagenAlt": "Sandalias color camel",
+        "precio": 3300,
+        "stock": 20  
+    },
+    {
+        "id": 13,
+        "nombre": "Sandalia Bella",
+        "color": "Negro",
+        "categoria": "Sandalias",
+        "imagen": "./images/products/sandalia-bella-negro.jpg",
+        "imagenAlt": "Sandalias color negro",
+        "precio": 3300,
+        "stock": 20  
+    },
+    {
+        "id": 14,
+        "nombre": "Sandalia Bella",
+        "color": "Suela",
+        "categoria": "Sandalias",
+        "imagen": "./images/products/sandalia-bella-suela.jpg",
+        "imagenAlt": "Sandalias color suela",
+        "precio": 3300,
+        "stock": 20  
+    },
+    {
+        "id": 15,
+        "nombre": "Sandalia Birk",
+        "color": "Negro",
+        "categoria": "Sandalias",
+        "imagen": "./images/products/sandalia-birk-negro.jpg",
+        "imagenAlt": "Sandalias color negro",
+        "precio": 3200,
+        "stock": 20  
+    },
+    {
+        "id": 16,
+        "nombre": "Sandalia Birk",
+        "color": "Suela",
+        "categoria": "Sandalias",
+        "imagen": "./images/products/sandalia-birk-suela.jpg",
+        "imagenAlt": "Sandalias color suela",
+        "precio": 3200,
+        "stock": 20  
+    },
+    {
+        "id": 17,
+        "nombre": "Sandalia Eva",
+        "color": "Blanco",
+        "categoria": "Sandalias",
+        "imagen": "./images/products/sandalia-eva-blanco.jpg",
+        "imagenAlt": "Sandalias color blanco",
+        "precio": 3300,
+        "stock": 20  
+    },
+    {
+        "id": 18,
+        "nombre": "Sandalia Eva",
+        "color": "Camel",
+        "categoria": "Sandalias",
+        "imagen": "./images/products/sandalia-eva-camel.jpg",
+        "imagenAlt": "Sandalias color camel",
+        "precio": 3300,
+        "stock": 20  
+    },
+    {
+        "id": 19,
+        "nombre": "Sandalia Eva",
+        "color": "Negro",
+        "categoria": "Sandalias",
+        "imagen": "./images/products/sandalia-eva-negro.jpg",
+        "imagenAlt": "Sandalias color negro",
+        "precio": 3300,
+        "stock": 20  
+    },
+    {
+        "id": 20,
+        "nombre": "Sandalia Greta",
+        "color": "Negro",
+        "categoria": "Sandalias",
+        "imagen": "./images/products/sandalia-greta-negro.jpg",
+        "imagenAlt": "Sandalias color negro",
+        "precio": 3400,
+        "stock": 20  
+    },
+    {
+        "id": 21,
+        "nombre": "Sandalia Greta",
+        "color": "Suela",
+        "categoria": "Sandalias",
+        "imagen": "./images/products/sandalia-greta-suela.jpg",
+        "imagenAlt": "Sandalias color suela",
+        "precio": 3400,
+        "stock": 20  
+    },
+    {
+        "id": 22,
+        "nombre": "Sandalia Nina",
+        "color": "Blanco",
+        "categoria": "Sandalias",
+        "imagen": "./images/products/sandalia-nina-blanco.jpg",
+        "imagenAlt": "Sandalias color blanco",
+        "precio": 3300,
+        "stock": 20  
+    },
+    {
+        "id": 23,
+        "nombre": "Sandalia Nina",
+        "color": "Camel",
+        "categoria": "Sandalias",
+        "imagen": "./images/products/sandalia-nina-camel.jpg",
+        "imagenAlt": "Sandalias color camel",
+        "precio": 3300,
+        "stock": 20  
+    },
+    {
+        "id": 24,
+        "nombre": "Sandalia Nina",
+        "color": "Negro",
+        "categoria": "Sandalias",
+        "imagen": "./images/products/sandalia-nina-negro.jpg",
+        "imagenAlt": "Sandalias color negro",
+        "precio": 3300,
+        "stock": 20  
+    },
+    {
+        "id": 25,
+        "nombre": "Sandalia Nina",
+        "color": "Nude",
+        "categoria": "Sandalias",
+        "imagen": "./images/products/sandalia-nina-nude.jpg",
+        "imagenAlt": "Sandalias color nude",
+        "precio": 3300,
+        "stock": 20  
+    },
+    {
+        "id": 26,
+        "nombre": "Sandalia Saona",
+        "color": "Gris",
+        "categoria": "Sandalias",
+        "imagen": "./images/products/sandalia-saona-gris.jpg",
+        "imagenAlt": "Sandalias color gris",
+        "precio": 3000,
+        "stock": 20  
+    },
+    {
+        "id": 27,
+        "nombre": "Sandalia Saona",
+        "color": "Marrón",
+        "categoria": "Sandalias",
+        "imagen": "./images/products/sandalia-saona-marron.jpg",
+        "imagenAlt": "Sandalias color marron",
+        "precio": 3000,
+        "stock": 20  
+    },
+    {
+        "id": 28,
+        "nombre": "Sandalia Saona",
+        "color": "Negro",
+        "categoria": "Sandalias",
+        "imagen": "./images/products/sandalia-saona-negro.jpg",
+        "imagenAlt": "Sandalias color negro",
+        "precio": 3000,
+        "stock": 20  
+    },
+    {
+        "id": 29,
+        "nombre": "Zapatilla Bianca",
+        "color": "Blanca",
+        "categoria": "Zapatillas",
+        "imagen": "./images/products/zapatilla-bianca-blanca.jpg",
+        "imagenAlt": "Zapatillas color blanca",
+        "precio": 6000,
+        "stock": 20  
+    },
+    {
+        "id": 30,
+        "nombre": "Zapatilla Cloe",
+        "color": "Camel",
+        "categoria": "Zapatillas",
+        "imagen": "./images/products/zapatilla-cloe-camel.jpg",
+        "imagenAlt": "Zapatillas color camel",
+        "precio": 4000,
+        "stock": 20  
+    },
+    {
+        "id": 31,
+        "nombre": "Zapatilla Cloe",
+        "color": "Negro",
+        "categoria": "Zapatillas",
+        "imagen": "./images/products/zapatilla-cloe-negro.jpg",
+        "imagenAlt": "Zapatillas color negro",
+        "precio": 4000,
+        "stock": 20  
+    },
+    {
+        "id": 32,
+        "nombre": "Zapatilla Cloe",
+        "color": "Rojo",
+        "categoria": "Zapatillas",
+        "imagen": "./images/products/zapatilla-cloe-rojo.jpg",
+        "imagenAlt": "Zapatillas color rojo",
+        "precio": 4000,
+        "stock": 20  
+    },
+    {
+        "id": 33,
+        "nombre": "Zapatilla Malena",
+        "color": "Gris",
+        "categoria": "Zapatillas",
+        "imagen": "./images/products/zapatilla-malena-gris.jpg",
+        "imagenAlt": "Zapatillas color gris",
+        "precio": 4500,
+        "stock": 20  
+    },
+    {
+        "id": 34,
+        "nombre": "Zapatilla Malena",
+        "color": "Negro",
+        "categoria": "Zapatillas",
+        "imagen": "./images/products/zapatilla-malena-negro.jpg",
+        "imagenAlt": "Zapatillas color negro",
+        "precio": 4500,
+        "stock": 20  
+    },
+    {
+        "id": 35,
+        "nombre": "Zapatilla Praga",
+        "color": "Blanco",
+        "categoria": "Zapatillas",
+        "imagen": "./images/products/zapatilla-praga-blanco.jpg",
+        "imagenAlt": "Zapatillas color blanco",
+        "precio": 4000,
+        "stock": 20  
+    },
+    {
+        "id": 36,
+        "nombre": "Zapatilla Praga",
+        "color": "Marrón",
+        "categoria": "Zapatillas",
+        "imagen": "./images/products/zapatilla-praga-marron.jpg",
+        "imagenAlt": "Zapatillas color marron",
+        "precio": 4000,
+        "stock": 20  
+    },
+    {
+        "id": 37,
+        "nombre": "Zapatilla Praga",
+        "color": "Negro",
+        "categoria": "Zapatillas",
+        "imagen": "./images/products/zapatilla-praga-negro.jpg",
+        "imagenAlt": "Zapatillas color negro",
+        "precio": 4500,
+        "stock": 20  
+    },
+    {
+        "id": 38,
+        "nombre": "Zapatilla Praga",
+        "color": "Rosa",
+        "categoria": "Zapatillas",
+        "imagen": "./images/products/zapatilla-praga-rosa.jpg",
+        "imagenAlt": "Zapatillas color rosa",
+        "precio": 4500,
+        "stock": 20  
+    },
+    {
+        "id": 39,
+        "nombre": "Zapatilla Sophia",
+        "color": "Amarillo",
+        "categoria": "Zapatillas",
+        "imagen": "./images/products/zapatilla-sophia-amarillo.jpg",
+        "imagenAlt": "Zapatillas color amarillo",
+        "precio": 4000,
+        "stock": 20  
+    },
+    {
+        "id": 40,
+        "nombre": "Zapatilla Sophia",
+        "color": "Blanco",
+        "categoria": "Zapatillas",
+        "imagen": "./images/products/zapatilla-sophia-blanco.jpg",
+        "imagenAlt": "Zapatillas color blanco",
+        "precio": 4000,
+        "stock": 20  
+    },
+    {
+        "id": 41,
+        "nombre": "Zapatilla Sophia",
+        "color": "Camel",
+        "categoria": "Zapatillas",
+        "imagen": "./images/products/zapatilla-sophia-camel.jpg",
+        "imagenAlt": "Zapatillas color camel",
+        "precio": 4000,
+        "stock": 20  
+    },
+    {
+        "id": 42,
+        "nombre": "Zapatilla Sophia",
+        "color": "Camuflado",
+        "categoria": "Zapatillas",
+        "imagen": "./images/products/zapatilla-sophia-camuflado.jpg",
+        "imagenAlt": "Zapatillas color camuflado",
+        "precio": 4000,
+        "stock": 20  
+    },
+    {
+        "id": 43,
+        "nombre": "Zapatilla Sophia",
+        "color": "Negro",
+        "categoria": "Zapatillas",
+        "imagen": "./images/products/zapatilla-sophia-negro.jpg",
+        "imagenAlt": "Zapatillas color negro",
+        "precio": 4000,
+        "stock": 20  
+    },
+    {
+        "id": 44,
+        "nombre": "Zapatilla Sophia",
+        "color": "Rojo",
+        "categoria": "Zapatillas",
+        "imagen": "./images/products/zapatilla-sophia-rojo.jpg",
+        "imagenAlt": "Zapatillas color rojo",
+        "precio": 4000,
+        "stock": 20  
+    },
+    {
+        "id": 45,
+        "nombre": "Zapatilla Valencia",
+        "color": "Blanco",
+        "categoria": "Zapatillas",
+        "imagen": "./images/products/zapatilla-valencia-blanco.jpg",
+        "imagenAlt": "Zapatillas color blanco",
+        "precio": 5000,
+        "stock": 20  
+    }
+]
