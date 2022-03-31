@@ -1,20 +1,12 @@
 import { useState, useEffect } from 'react';
 import './ItemList.css';
 import Item from './Item/Item';
-import productsJson from '../../../json products/products.json';
+import {getProducts} from '../../../services/products.service';
 
 
 const ItemList = () => {
 
     const [products, setProducts] = useState([]);
-
-    const getProducts = () => {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                return resolve(productsJson);
-            }, 2000);
-        });
-    };
 
     useEffect(() => {
         getProducts().then(data => {
@@ -23,7 +15,6 @@ const ItemList = () => {
             console.log(e)
         });
     }, []);
-
 
     return(
         <div className="container-ItemListContainer">
@@ -38,7 +29,7 @@ const ItemList = () => {
                     )
                 })}
             </div>
-        </div>
+        </div>  
     );
 };
 

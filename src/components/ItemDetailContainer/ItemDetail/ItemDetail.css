@@ -1,0 +1,86 @@
+.container-itemDetail {
+    display: flex;
+    flex-wrap: inherit;
+    margin: 3% 10% 5% 10%;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.row-itemDetail {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.col-itemDetail {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 40%;
+    justify-content: center;
+}
+
+.title-itemDetail {
+    text-transform: uppercase;
+    text-align: start;
+    color: rgba(215, 132, 140, 0.76);
+    margin-top: 0;
+}
+
+.price-itemDetail {
+    color: rgba(215, 132, 140, 0.76);
+    margin-top: 8%;
+}
+
+.priceText-itemDetail {
+    font-size: 1.8em;
+}
+
+.imgDiv-itemDetail {
+    display: flex;
+    flex-direction: row;
+    height: 349px;
+    width: 87%;
+    overflow: hidden;
+}
+
+.imgAnimation-itemDetail {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 100%;
+}
+
+.img-itemDetail {
+    width: 100%;
+    box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
+}
+
+.divider-itemDetail{
+    height: 40vh !important;
+}
+
+.MuiFormControl-root {
+    width: 70% !important;
+}
+
+#demo-simple-select, .itemSelect-itemDetail {
+    color: rgba(0, 0, 0, 0.54) !important;
+}
+
+.rowBtn-itemDetail {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 87%;
+    position: relative;
+    top: 178px;
+    z-index: 1;
+}
+
+.description-itemDetail {
+    margin-top: 5%;
+    color: rgba(0, 0, 0, 0.54);
+}
