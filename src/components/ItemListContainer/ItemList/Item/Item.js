@@ -2,23 +2,29 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
+import { useNavigate } from 'react-router-dom';
 import './Item.css';
 import ItemCount from './ItemCount/ItemCount';
 
 
 const Item = ({props}) => {
 
-  const {imagen, imagenAlt, nombre, precio, stock} = props;
+  const {id, imagen, imagenAlt, nombre, precio, stock} = props;
+  const navigate = useNavigate();
 
-  const onAdd = (counter) => {
+  const onAdd = (counter, e) => {
     if (counter <= stock) {
       console.log(`Se agregaron ${counter} ${nombre} al carrito`);
     }
+    e.stopPropagation();
   };
 
-  
+  const navigateToDetail = () => {
+    navigate(`/productos/${id}`);
+  };
+
   return (
-    <div>
+    <div onClick={navigateToDetail}>
       <Card className="cardItem">
         <div className='imgDiv-cardItem'>
           <div className='imgAnimation-cardItem'>          

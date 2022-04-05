@@ -1,18 +1,10 @@
-.container-ItemListContainer {
-    display: flex;
-    flex-wrap: inherit;
-    margin: 3% 10% 5% 10%;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.row-ItemListContainer {
+.row-itemList {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
     justify-content: space-evenly;
 }
 
-.col-ItemListContainer {
+.col-itemList {
     margin-bottom: 3%;
 }

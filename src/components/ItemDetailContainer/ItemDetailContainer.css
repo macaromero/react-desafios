@@ -1,3 +1,7 @@
+main {
+    margin-top: 7%;
+}
+
 .container-itemDetailContainer {
     display: flex;
     flex-wrap: inherit;
@@ -12,4 +16,9 @@
     flex-wrap: wrap;
     width: 100%;
     justify-content: space-between;
+}
+
+.btn-itemDetailContainer {
+    text-transform: none;
+    color: rgba(215, 132, 140, 0.76) !important;
 }

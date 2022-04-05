@@ -7,6 +7,9 @@
 
 .navbar {
     background-color: rgb(247, 233, 233);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 #menu-navbar {
@@ -27,9 +30,55 @@
 }
 
 .logo-navbar {
-    width: 4%;
+    width: 45%;
+    cursor: pointer;
 }
 
-.logoMenu-navbar {
+.logoMecha-navbar {
+    display: flex;
+    width: 10%;
+}
+
+.links-navbar {
+    display: flex;
+    color: white;
+    width: 34.5%;
+    margin-left: -5%;
+}
+
+#ul-navbar {
+    list-style: none;
+    display: flex;
+    padding-left: 0;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+li {
+    display: inline;
+}
+
+.logosCart-navbar {
+    display: flex;
+}
+
+a, .btnPproductos-navbar {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.35) !important;
+}
+
+.flechaProductos-navbar {
+    vertical-align: top;
+}
+
+.liProductos-navbar {
+    justify-content: center;
+}
+
+.linkBtn-navbar {
+    color: rgb(235, 194, 198);
+}
+
+.logosUserCart-navbar {
     display: flex;
 }

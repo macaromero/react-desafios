@@ -1,67 +1,111 @@
 import './ItemDetail.css';
 import {useState} from 'react';
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import Divider from '@mui/material/Divider';
-import ItemCount from '../../ItemListContainer/ItemList/Item/ItemCount/ItemCount';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { Button } from '@mui/material';
+import { pink, green, brown, grey, orange, red, yellow, lightBlue, teal} from '@mui/material/colors';
+import Radio from '@mui/material/Radio';
 
 const ItemDetail = ({props}) => {
 
     const imagen = props.imagen || [];
     const color = props.color || [];
-    const {nombre, imagenAlt, precio, stock} = props;
+    const talle = props.talle || [];
+    const {nombre, imagenAlt, precio} = props;
 
     const [colour, setColour] = useState('');
-    const [positionCarousel, setPositionCarousel] = useState(0)
+    const [size, setSize] = useState("");
+    const [positionCarousel, setPositionCarousel] = useState(0);
+    const [imgDimensions, setImgDimensions] = useState({height:0, width:0});
 
-    const handleChange = (event) => {
+
+    const handleSizeChange = (event) => {
+        setSize(event.target.value)
+    }
+
+    const handleColorChange = (event) => {
         setColour(event.target.value);
     };
 
-    const onAdd = (counter) => {
-        if (counter <= stock) {
-          console.log(`Se agregaron ${counter} ${nombre} al carrito`);
+    const controlProps = (selectedColor) => ({
+        checked: colour === selectedColor,
+        onChange: handleColorChange,
+        value: selectedColor,
+        name: 'color-radio-button-demo',
+        inputProps: { 'aria-label': selectedColor }
+    });
+
+    const radioColor = (color) => {
+        if (color === "Negro") {
+            return grey[900]
+        } else if (color === "Marrón") {
+            return brown[800]
+        } else if (color === "Verde") {
+            return teal[400]
+        } else if (color === "Rosa") {
+            return pink[100]
+        } else if (color === "Rojo") {
+            return red[400]
+        } else if (color === "Anaranjado") {
+            return orange[400]
+        } else if (color === "Amarillo") {
+            return yellow[[500]]
+        } else if (color === "Blanco") {
+            return grey[50]
+        } else if (color === "Camel") {
+            return brown[400]
+        } else if (color === "Suela") {
+            return brown[200]
+        } else if (color === "Camuflado") {
+            return green[900]
+        } else if (color === "Gris") {
+            return grey[600]
+        } else if (color === "Nude") {
+            return red[50]
+        } else if (color === "Celeste") {
+            return lightBlue[400]
         }
+    }
+
+    const onImgLoad = ({ target: img }) => {
+        const { offsetHeight, offsetWidth } = img;
+        setImgDimensions({height:offsetHeight, width:offsetWidth});
     };
 
     const moveLeft = () => {
         if (positionCarousel < 0) {
-            setPositionCarousel(positionCarousel + 426.217);
+            setPositionCarousel(positionCarousel + imgDimensions.width);
         }  
-    }
+    };
 
     const moveRight = () => {
-        if (positionCarousel > -1278.65) {
-            setPositionCarousel(positionCarousel - 426.217);
+        if (positionCarousel > -(imgDimensions.width*(imagen.length-1))) {
+            setPositionCarousel(positionCarousel - imgDimensions.width);
         } 
-    }
+    };
 
     const style = {"transform": `translateX(${positionCarousel}px)`};
 
+    
     return(
         <div className="container-itemDetail">
-            <div className="row-itemDetail">
-                <h1 className='title-itemDetail'>{nombre}</h1>
+            <div className='rowBtn-itemDetail w-60' style={{top: imgDimensions.height/2}}>
+                    <Button onClick={moveLeft}><ArrowLeftIcon className='btnArrow-itemDetail'/></Button> 
+                    <Button onClick={moveRight}><ArrowRightIcon className='btnArrow-itemDetail'/></Button> 
             </div>
-            <div className="row-itemDetail">
-                <div className="col-itemDetail">
-                    <div className='rowBtn-itemDetail'>
-                        <Button className="button-itemDetail" onClick={moveLeft}><ArrowLeftIcon/></Button> 
-                        <Button className="button-itemDetail" onClick={moveRight}><ArrowRightIcon/></Button> 
-                    </div>
-                    <div className='imgDiv-itemDetail'>
+            <div className="row-itemDetail space-between">
+                <div className="col-itemDetail w-60">
+                    <div className='imgDiv-itemDetail' style={{height:imgDimensions.height}}>
                         <div className='imgAnimation-itemDetail' style={style}>
                             {imagen.map((img, i) => {
                                 return (
                                     <img
+                                    onLoad={onImgLoad}
                                     alt={imagenAlt[i]}
-                                    src={img}
+                                    src={`../../..${img}`}
                                     className="img-itemDetail"
                                     key={img}
                                     />
@@ -71,48 +115,63 @@ const ItemDetail = ({props}) => {
                         </div>
                     </div>
                 </div>
-                <Divider orientation="vertical" flexItem className='divider-itemDetail'></Divider>
-                <div className="col-itemDetail">
-                    <Box sx={{ minWidth: 120 }}>
-                        <FormControl fullWidth>
-                            <InputLabel id="demo-simple-select-label">Color</InputLabel>
-                            <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={colour}
-                            label="Color"
-                            onChange={handleChange}
-                            >
+                <div className="col-itemDetail w-30 flex-start">
+                    <div className="row-itemDetail">
+                        <h1 className='title-itemDetail'>{nombre}</h1>
+                    </div>
+                    <div className="row-itemDetail">
+                        <p className='price-itemDetail'>${precio}</p>
+                    </div>
+                    <div className="row-itemDetail">
+                        <div className="col-itemDetail w-100">
+                            <p className='subtitle-itemDetail'>Color</p>
+                            <div className='row-itemDetail'>
                                 {color.map(c => {
                                     return(
-                                        <MenuItem key={c} value={c} className="itemSelect-itemDetail">{c}</MenuItem>
-                                    )
-                                })}
-                            </Select>
-                        </FormControl>
-                    </Box>
-                    <div className='price-itemDetail'>
-                        <h2 className='priceText-itemDetail'>${precio}</h2>
-                        <ItemCount stock={stock} initial={1} onAdd={onAdd} />
+                                        <div className="col-itemDetail" key={c}>
+                                            <Radio {...controlProps(c)}
+                                            className="itemSelect-itemDetail" sx={{color: radioColor(c),
+                                                '&.Mui-checked': {color: radioColor(c)}}}/>
+                                        </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                            <p className='subtitle-itemDetail'>Talle</p>
+                            <div className='row-itemDetail'>
+                                <FormControl sx={{ m: 1, minWidth: 80 }}>
+                                    <Select
+                                    labelId="demo-simple-select-autowidth-label"
+                                    id="demo-simple-select-autowidth"
+                                    value={size}
+                                    onChange={handleSizeChange}
+                                    autoWidth
+                                    >
+                                        {talle.map(t => {
+                                            return( 
+                                                <MenuItem value={t} key={t}>{t}</MenuItem>       
+                                                )
+                                            })
+                                        }
+                                    </Select>
+                                </FormControl>
+                            </div>   
+                            <div className="row-itemDetail">
+                                <p className='subtitle-itemDetail'>Detalle</p>
+                                <p className='description-itemDetail'>
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos reiciendis doloremque dolorum et odio voluptatibus fugit nisi qui consectetur minus ad corrupti pariatur, possimus iure quis aperiam, rem, ipsa iusto?
+                                </p>
+                            </div>   
+                            <div className="btn-itemDetail">
+                                <Button variant="contained" className='btnBuy-itemDetail'>Comprar</Button>
+                            </div>
+                        </div>
                     </div>
-                    
                 </div>
-            </div>
-            <div className="row-itemDetail">
-                <p className='description-itemDetail'>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos reiciendis doloremque dolorum et odio voluptatibus fugit nisi qui consectetur minus ad corrupti pariatur, possimus iure quis aperiam, rem, ipsa iusto?
-                    Nam distinctio cumque laboriosam illum pariatur asperiores labore quisquam, ratione perspiciatis rerum reprehenderit quo possimus quas hic, beatae minima dicta, voluptatem aut? Provident porro voluptatem accusamus obcaecati, vitae blanditiis dolor.
-                    Soluta earum rerum dolorum, dolor fuga, iusto ipsum incidunt officia, exercitationem aliquid voluptatibus! Quam, officia voluptatum exercitationem nam quibusdam repudiandae impedit quidem odio possimus nostrum, maiores laboriosam consectetur nemo. Quo.
-                    Nesciunt, accusantium. Facilis numquam blanditiis, nostrum harum esse voluptatibus cumque nisi soluta explicabo iusto libero expedita officiis nam perspiciatis corrupti beatae consequuntur atque nesciunt et distinctio odit excepturi ipsum. Velit?
-                    Dolores, recusandae! Porro non ab, illo quo possimus tempore cupiditate dicta nobis modi sapiente neque quia nesciunt doloribus commodi minus dolore reprehenderit exercitationem culpa molestias ullam earum ipsam! Recusandae, vel!
-                </p>
-            </div>
+            </div> 
         </div>
     );
     
 };
 
 export default ItemDetail;
-
-
-    

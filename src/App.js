@@ -1,37 +1,24 @@
 import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
-import ItemListContainer from './components/ItemListContainer/ItemListContainer'
-import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
-import { useEffect, useState } from 'react';
-import { Button } from '@mui/material';
+import Home from './pages/Home';
+import Productos from './pages/Productos';
+import Producto from './pages/Producto';
+import Categoria from './pages/Categoria';
 
-function App() {
-  const [detailView, setDetailView] = useState(false);
-  const [buttonView, setButtonView] = useState(false);
-
-  useEffect(() => {
-    if (detailView === true) {
-      setButtonView(true)
-    } 
-  }, [detailView])
-
-  const button = () => {
-    if (!buttonView) {
-      return (
-        <Button onClick={() => {setDetailView(true)}}>Ver detalle</Button>
-      )
-    }
-  }
-  
+function App() {  
   return (
     <div className="App">
+      <BrowserRouter>
         <Navbar/>
-        {button()}
-        {!detailView ? (
-          <ItemListContainer/>
-        ) : (
-          <ItemDetailContainer/>
-        )} 
+        <Routes>
+          <Route path='/' element={<Home/>}/>
+          <Route path='/categorias/:id_cat' element={<Categoria/>}/>
+          <Route path='/productos' element={<Productos/>}/>
+          <Route path='/productos/:id' element={<Producto/>}/>
+          <Route path='*' element={<div>FALTA HACER</div>}/>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

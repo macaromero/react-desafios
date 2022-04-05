@@ -4,21 +4,20 @@
     margin: 3% 10% 5% 10%;
     align-items: center;
     justify-content: space-between;
-    width: 80%;
+    width: 100%;
 }
 
 .row-itemDetail {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    justify-content: space-evenly;
+    column-gap: 2%;
 }
 
 .col-itemDetail {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    width: 40%;
     justify-content: center;
 }
 
@@ -27,22 +26,20 @@
     text-align: start;
     color: rgba(215, 132, 140, 0.76);
     margin-top: 0;
+    font-size: 1.8em;
 }
 
 .price-itemDetail {
-    color: rgba(215, 132, 140, 0.76);
-    margin-top: 8%;
-}
-
-.priceText-itemDetail {
-    font-size: 1.8em;
+    font-size: 1em;
+    color: rgba(0, 0, 0, 0.35);
+    margin-top: 0;
+    text-transform: uppercase;
+    text-align: start;
 }
 
 .imgDiv-itemDetail {
     display: flex;
     flex-direction: row;
-    height: 349px;
-    width: 87%;
     overflow: hidden;
 }
 
@@ -55,19 +52,10 @@
 
 .img-itemDetail {
     width: 100%;
-    box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
 }
 
 .divider-itemDetail{
     height: 40vh !important;
-}
-
-.MuiFormControl-root {
-    width: 70% !important;
-}
-
-#demo-simple-select, .itemSelect-itemDetail {
-    color: rgba(0, 0, 0, 0.54) !important;
 }
 
 .rowBtn-itemDetail {
@@ -76,11 +64,60 @@
     justify-content: space-between;
     width: 87%;
     position: relative;
-    top: 178px;
     z-index: 1;
 }
 
 .description-itemDetail {
-    margin-top: 5%;
+    color: rgba(0, 0, 0, 0.35);
+    text-align: start;
+    font-size: 0.9em;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.w-60 {
+    width: 60%;
+}
+
+.w-30 {
+    width: 30%;
+}
+
+.space-evenly {
+    justify-content: space-between;
+}
+
+.flex-start {
+    justify-content: flex-start;
+}
+
+.subtitle-itemDetail {
+    text-transform: uppercase;
+    text-align: start;
     color: rgba(0, 0, 0, 0.54);
+    margin-bottom: 0;
+    margin-top: 6%;
+    font-size: 1em;
+}
+
+.MuiSelect-select {
+    color: rgba(0, 0, 0, 0.35) !important;
+}
+
+.btnBuy-itemDetail {
+    background-color: rgb(235, 194, 198) !important;
+    width: 80%;
+}
+
+.btn-itemDetail {
+    margin-top: 10%;
+    margin-left: 2%;
+    text-align: start;
+}
+
+.btnArrow-itemDetail {
+    scale: 2;
+    color: rgb(235, 194, 198);
 }
