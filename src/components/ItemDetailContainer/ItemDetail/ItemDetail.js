@@ -1,5 +1,5 @@
 import './ItemDetail.css';
-import {useState} from 'react';
+import {useContext, useState} from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
@@ -8,18 +8,25 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { Button } from '@mui/material';
 import { pink, green, brown, grey, orange, red, yellow, lightBlue, teal} from '@mui/material/colors';
 import Radio from '@mui/material/Radio';
+import ItemCount from '../../ItemListContainer/ItemList/Item/ItemCount/ItemCount'
+import { useNavigate } from 'react-router-dom';
+import CartContext from '../../../context/CartContext';
 
 const ItemDetail = ({props}) => {
 
+    const {addProductToCart} = useContext(CartContext)
     const imagen = props.imagen || [];
     const color = props.color || [];
     const talle = props.talle || [];
-    const {nombre, imagenAlt, precio} = props;
+    const {id, nombre, id_categoria, categoria, imagenAlt, precio, stock} = props;
 
     const [colour, setColour] = useState('');
     const [size, setSize] = useState("");
+    const [quantity, setQuantity] = useState(0);
+    const [productToBuy, setProductToBuy] = useState({});
     const [positionCarousel, setPositionCarousel] = useState(0);
     const [imgDimensions, setImgDimensions] = useState({height:0, width:0});
+    const navigate = useNavigate();
 
 
     const handleSizeChange = (event) => {
@@ -88,6 +95,31 @@ const ItemDetail = ({props}) => {
     };
 
     const style = {"transform": `translateX(${positionCarousel}px)`};
+
+    const onAdd = (e, counter) => {
+        e.stopPropagation();
+        if (counter <= stock) {
+            setQuantity(counter);
+            const producto = {
+                id: id,
+                nombre: nombre,
+                color: colour,
+                talle: size,
+                id_categoria: id_categoria,
+                categoria: categoria,
+                imagen: imagen,
+                precioUnitario: precio,
+                precioTotal:  precio*counter,
+                cantidad: counter 
+            }
+            setProductToBuy(producto);
+            addProductToCart(producto);
+        }
+    };
+
+    const endPurchase = () => {
+        navigate('/cart');
+    }
 
     
     return(
@@ -163,7 +195,12 @@ const ItemDetail = ({props}) => {
                                 </p>
                             </div>   
                             <div className="btn-itemDetail">
-                                <Button variant="contained" className='btnBuy-itemDetail'>Comprar</Button>
+                                {quantity === 0 ? (
+                                    <ItemCount stock={stock} onAdd={onAdd}/>  
+                                ) : (
+                                    <Button variant="contained" className='btnBuy-itemDetail' onClick={endPurchase}>Comprar</Button>
+                                )
+                                }
                             </div>
                         </div>
                     </div>

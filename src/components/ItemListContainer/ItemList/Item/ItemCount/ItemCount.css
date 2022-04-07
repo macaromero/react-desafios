@@ -30,11 +30,13 @@
 }
 
 .col-itemCount {
+    display: flex;
+    flex-direction: column;
     width: 100%;
 }
 
-.btnBuy-itemCount {
-    width: 71%;
-    background-color: rgb(235, 194, 198) !important;
-    color: rgb(176, 124, 129) !important;
+#btnBuy-itemCount {
+    margin: 0 2%;
+    background-color: rgb(235, 194, 198);
+    color: rgb(176, 124, 129);
 }

@@ -5,20 +5,24 @@ import Home from './pages/Home';
 import Productos from './pages/Productos';
 import Producto from './pages/Producto';
 import Categoria from './pages/Categoria';
+import Cart from './pages/Cart';
+import { CartProvider  } from './context/CartContext';
 
 function App() {  
   return (
     <div className="App">
-      <BrowserRouter>
-        <Navbar/>
-        <Routes>
-          <Route path='/' element={<Home/>}/>
-          <Route path='/categorias/:id_cat' element={<Categoria/>}/>
-          <Route path='/productos' element={<Productos/>}/>
-          <Route path='/productos/:id' element={<Producto/>}/>
-          <Route path='*' element={<div>FALTA HACER</div>}/>
-        </Routes>
+      <CartProvider>
+        <BrowserRouter>
+          <Navbar/>
+          <Routes>
+            <Route path='/' element={<Home/>}/>
+            <Route path='/categorias/:id_cat' element={<Categoria/>}/>
+            <Route path='/productos' element={<Productos/>}/>
+            <Route path='/productos/:id' element={<Producto/>}/>
+            <Route path='/cart' element={<Cart/>}/>
+          </Routes>
       </BrowserRouter>
+      </CartProvider>
     </div>
   );
 }

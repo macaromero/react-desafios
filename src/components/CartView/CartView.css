@@ -1,0 +1,34 @@
+#tContainer-cart {
+    display: flex;
+    justify-content: center;
+    margin-top: 9%;
+}
+
+#table-cart {
+    width: 60%;
+}
+
+#tHead-cart {
+    background-color: rgba(215, 132, 140, 0.76);
+}
+
+#tHead-cart th {
+    color: white;
+}
+
+#tBody-cart td, #tBody-cart th, #tFooter-cart td {
+    color: rgba(0, 0, 0, 0.54);
+}
+
+#tFooter-cart {
+    background-color: rgb(247, 233, 233);
+}
+
+#tHead-cart th, #tFooter-cart .tCell-cart {
+    font-weight: 700;
+}
+
+#tFooter-cart .tCell-cart {
+    font-size: 1em;
+}
+

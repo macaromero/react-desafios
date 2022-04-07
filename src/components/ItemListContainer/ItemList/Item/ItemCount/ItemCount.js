@@ -2,22 +2,22 @@ import React, {useState} from 'react';
 import Button from '@mui/material/Button';
 import './ItemCount.css';
 
-const ItemCount = ({stock, initial, onAdd}) => {
+const ItemCount = ({stock, onAdd}) => {
 
-    const [counter, setCounter] = useState(parseInt(initial))
+    const [counter, setCounter] = useState(1)
 
     const substract = (e) => {
+        e.stopPropagation();
         if (counter > 1) {
             setCounter(counter - 1)
         };
-        e.stopPropagation();
     };
 
     const add = (e) => {
+        e.stopPropagation();
         if (counter < stock) {
             setCounter(counter + 1)
         };
-        e.stopPropagation();
     };
 
 
@@ -36,7 +36,7 @@ const ItemCount = ({stock, initial, onAdd}) => {
             </div>
             <div className='row-itemCount'>
                 <div className='col-itemCount'>
-                    <Button variant="contained" className='btnBuy-itemCount' onClick={(e) => onAdd(counter, e)}>Agregar al carrito</Button>
+                    <Button variant="contained" id='btnBuy-itemCount' onClick={(e) => onAdd(e, counter)}>Agregar al carrito</Button>
                 </div>
             </div>
         </div>
