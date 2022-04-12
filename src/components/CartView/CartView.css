@@ -1,7 +1,27 @@
+.container-cartView {
+    display: flex;
+    flex-wrap: inherit;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-top: 9%;
+}
+
+.row-cartView {
+    display: flex;
+    flex-wrap: wrap;
+    width: 60%;
+    justify-content: space-between;
+    margin-bottom: 1%;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
 #tContainer-cart {
     display: flex;
     justify-content: center;
-    margin-top: 9%;
 }
 
 #table-cart {
@@ -32,3 +52,13 @@
     font-size: 1em;
 }
 
+.h2-cartView {
+    color: rgba(0, 0, 0, 0.35);
+    margin-bottom: 14%;
+}
+
+#btnSeguirComprando-cartView {
+    color: rgb(176, 124, 129);
+    background-color: rgb(235, 194, 198);
+    width: 100%;
+}

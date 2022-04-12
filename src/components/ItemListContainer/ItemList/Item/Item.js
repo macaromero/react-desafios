@@ -17,12 +17,13 @@ const Item = ({props}) => {
   const imagen = props.imagen || [];
   const color = props.color || [];
   const talle = props.talle || [];
-  const {id, categoria, id_categoria, imagenAlt, nombre, precio, stock} = props;
+  const imagenAlt = props.imagenAlt || [];
+  const {id, categoria, id_categoria, nombre, precio, stock} = props;
   const [positionCarousel, setPositionCarousel] = useState(0);
   const [colour, setColour] = useState('');
   const [size, setSize] = useState("");
-  const [quantity, setQuantity] = useState(0);
-  const [productToBuy, setProductToBuy] = useState({});
+  const [imgResultante, setImgResultante] = useState("");
+  const [altImgResultante, setAltImgResultante] = useState("");
   const navigate = useNavigate();
 
 
@@ -45,6 +46,9 @@ const Item = ({props}) => {
   const handleColorChange = (e) => {
     e.stopPropagation();
     setColour(e.target.value);
+    let indexImg = parseInt(e.target.id);
+    setImgResultante(imagen[indexImg])
+    setAltImgResultante(imagenAlt[indexImg])
   };
 
   const controlProps = (selectedColor) => ({
@@ -92,11 +96,9 @@ const Item = ({props}) => {
     setSize(e.target.value);
   }
 
-
   const onAdd = (e, counter) => {
     e.stopPropagation();
     if (counter <= stock) {
-      setQuantity(counter);
       const producto = {
         id: id,
         nombre: nombre,
@@ -104,15 +106,17 @@ const Item = ({props}) => {
         talle: size,
         id_categoria: id_categoria,
         categoria: categoria,
-        imagen: imagen,
+        imagen: imgResultante,
+        imagenAlt: altImgResultante,
+        stock: stock,
         precioUnitario: precio,
         precioTotal:  precio*counter,
         cantidad: counter 
       }
-      setProductToBuy(producto);
       addProductToCart(producto);
     };
   };
+
 
   const navigateToDetail = () => {
     navigate(`/productos/${id}`);
@@ -148,13 +152,13 @@ const Item = ({props}) => {
                 <h2 className='price-item'>${precio}</h2>
             </div>
             <div className='row-item' id="selectColor-item">
-              {color.map(c => {
+              {color.map((c, i) => {
                 return(
                     <div className="col-item" key={c}>
                         <Radio {...controlProps(c)}
                         className="itemSelect-item" sx={{color: radioColor(c),
                         '&.Mui-checked': {color: radioColor(c)}}}
-                        onClick={(e) => handleColorChange(e)}/>
+                        onClick={(e) => handleColorChange(e)}  id={i.toString()}/>
                     </div>
                     )
                 })

@@ -31,7 +31,7 @@
         "id_categoria": 3,
         "categoria": "Sandalias",
         "imagen": ["/images/products/sandalia-africa-camel.jpg", "/images/products/sandalia-africa-negro.jpg"],
-        "imagenAlt": ["Sandalias color camel"],
+        "imagenAlt": ["Sandalias color camel", "Sandalias color negro"],
         "precio": 3200,
         "stock": 20 
     },

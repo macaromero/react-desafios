@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useContext} from 'react';
 import './Navbar.css';
 import logoMecha from '../../images/logo.png'
 import AppBar from '@mui/material/AppBar';
@@ -8,14 +8,15 @@ import IconButton from '@mui/material/IconButton';
 import PersonIcon from '@mui/icons-material/Person';
 import CartWidget from './CartWidget/CartWidget';
 import { Button, Divider } from '@mui/material';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import CartContext from '../../context/CartContext';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 
 const Navbar = () => {
+    const {isCartEmpty} = useContext(CartContext);
     const navigate = useNavigate();
     
     const [anchorEl, setAnchorEl] = useState(null);
@@ -114,9 +115,13 @@ const Navbar = () => {
                             </ul>
                         </div>
                         <div className='logosCart-navbar'>
-                            <div className='logosUserCart-navbar'>
-                                <CartWidget/>
-                            </div>
+                            {
+                                !isCartEmpty && 
+                                    <div className='logosUserCart-navbar'>
+                                        <CartWidget/>
+                                    </div>
+                            }
+                            
                             <div className='logosUserCart-navbar'>
                                 <IconButton size="large">
                                         <PersonIcon />
