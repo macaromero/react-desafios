@@ -1,22 +1,34 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import Button from '@mui/material/Button';
-import {getProductById} from '../../services/products.service';
-import getCategories from '../../services/categories.service';
 import ItemDetail from './ItemDetail/ItemDetail';
 import './ItemDetailContainer.css';
 import { useNavigate } from 'react-router-dom';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { doc, getDoc } from "firebase/firestore";
+import db from '../../firebase';
+import CategoriesContext from '../../context/CategoriesContext';
 
 
 const ItemDetailContainer = ({id}) => {
+    const {getCategories, categories, setCat} = useContext(CategoriesContext);
     const [product, setProduct] = useState({});
-    const [categories, setCategories] = useState([])
     const navigate = useNavigate();
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
+
+    useEffect(() => {  
+        getCategories()  
+        setCat(id, categories) 
+    }, []);
+
+    useEffect(() => {
+        getProduct()
+        setCat(id, categories)
+    }, [id]);
+
 
     const handleCatClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -28,27 +40,24 @@ const ItemDetailContainer = ({id}) => {
 
     const navigateToCat = (id_cat) => {
         setAnchorEl(null);
-        navigate(`/categorias/${id_cat}`);
+        navigate(`/categories/${id_cat}`);
     };
 
-    useEffect(() => {
-        getProductById(id).then(data => {
-            setProduct(data)
-        }).catch((e) => {
-            console.log(e)
-        });  
-    }, [id]);
+    const getProduct = async () => {
+        const docRef = doc(db, "products", id);
+        const docSnap = await getDoc(docRef);
 
-    useEffect(() => {  
-        getCategories().then(data => {
-            setCategories(data)
-        }).catch((e) => {
-            console.log(e)
-        });    
-    }, []);
+        if (docSnap.exists()) {
+            let producto = docSnap.data();
+            producto.id = docSnap.id;
+            return setProduct(producto)
+        } else {
+            navigate('/error')
+        }
+    }
 
     const backToProducts = () => {
-        navigate(`/productos`);
+        navigate(`/products`);
     };
 
     return(

@@ -15,6 +15,10 @@
     margin-bottom: 1%;
 }
 
+#btnVolver-cartView {
+    color: rgba(215, 132, 140, 0.76);
+}
+
 .justify-center {
     justify-content: center;
 }
@@ -52,13 +56,30 @@
     font-size: 1em;
 }
 
-.h2-cartView {
-    color: rgba(0, 0, 0, 0.35);
-    margin-bottom: 14%;
+.h3-cartView {
+    color: rgba(0, 0, 0, 0.54);
+    margin-bottom: 6%;
+    text-transform: uppercase;
 }
 
 #btnSeguirComprando-cartView {
-    color: rgb(176, 124, 129);
-    background-color: rgb(235, 194, 198);
+    color: rgba(0, 0, 0, 0.54);
+    border: 1px solid rgb(235, 194, 198);
+    width: 50%;
+    border-radius: 0;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+#btnComprar-cartView {
+    color: rgba(0, 0, 0, 0.54);
+    border: 1px solid rgb(235, 194, 198);
     width: 100%;
+    border-radius: 0;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.mt {
+    margin-top: 2%;
 }

@@ -91,25 +91,25 @@ const Navbar = () => {
                                             categorias.map(c => {
                                                 return (
                                                     <MenuItem onClick={handleClose} key={c.id_categoria}>
-                                                        <Link to={`/categorias/${c.id_categoria}`}><ArrowRightIcon className='flechaProductos-navbar'/>{c.categoria}</Link>
+                                                        <Link to={`/categories/${c.id_categoria}`}><ArrowRightIcon className='flechaProductos-navbar'/>{c.categoria}</Link>
                                                     </MenuItem>
                                                 );
                                             })
                                         }
                                         <Divider></Divider>
                                         <MenuItem onClick={handleClose} className="liProductos-navbar">
-                                            <Link to="/productos">Ver todos</Link>
+                                            <Link to="/products">Ver todos</Link>
                                         </MenuItem>
                                     </Menu>
                                 </li>
                                 <li>
                                     <Button>
-                                        <Link to={"/nosotros"}>Nosotros</Link>
+                                        <Link to={"/us"}>Nosotros</Link>
                                     </Button>
                                 </li>
                                 <li>
                                     <Button>
-                                        <Link to={"/contacto"}>Contacto</Link>
+                                        <Link to={"/contact"}>Contacto</Link>
                                     </Button>
                                 </li>
                             </ul>

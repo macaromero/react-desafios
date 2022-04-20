@@ -9,14 +9,14 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { Button } from '@mui/material';
 import './CartView.css';
 import { TableFooter } from '@mui/material';
-import { useContext} from 'react';
+import { useContext } from 'react';
 import CartContext from '../../context/CartContext';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import { useNavigate } from 'react-router-dom';
 
 
 const CartView = () => {   
-    const {cartProducts, removeProductFromCart, emptyCart, isCartEmpty} = useContext(CartContext);
+    const {cartProducts, removeProductFromCart, emptyCart, isCartEmpty, total} = useContext(CartContext);
     const navigate = useNavigate();   
     const StyledTableRow = styled(TableRow)(({ theme }) => ({
         '&:nth-of-type(even)': {
@@ -24,16 +24,12 @@ const CartView = () => {
         },
     }));
 
-    const finalValue = () => {
-        let total = 0
-        cartProducts.map((p) => {
-            return total += p.precioTotal
-        })
-        return total
+    const goBack = () => {
+        navigate('/products');
     }
 
-    const goBack = () => {
-        navigate('/productos');
+    const buy = () => {
+        navigate('/purchase')
     }
 
     const view = () => {
@@ -41,7 +37,7 @@ const CartView = () => {
             return (
                 <div className='container-cartView'>
                     <div className='row-cartView'>
-                        <Button onClick={goBack}><ArrowLeftIcon/> Seguir comprando</Button>
+                        <Button onClick={goBack} id='btnVolver-cartView'><ArrowLeftIcon/> Seguir comprando</Button>
                         <Button color='error' variant='contained' onClick={(e) => emptyCart(e)}>Vaciar carrito</Button>
                     </div>
                     <TableContainer id="tContainer-cart">
@@ -78,11 +74,14 @@ const CartView = () => {
                                     <TableCell align="center">-</TableCell>
                                     <TableCell align="center">-</TableCell>
                                     <TableCell align="center">-</TableCell>
-                                    <TableCell className='tCell-cart' align="center">{`$${finalValue()}`}</TableCell>
+                                    <TableCell className='tCell-cart' align="center">{`$${total}`}</TableCell>
                                 </TableRow>
                             </TableFooter>
                         </Table>
                     </TableContainer>
+                    <div className='row-cartView justify-center mt'>
+                        <Button onClick={buy} id='btnComprar-cartView'>Finalizar compra</Button>
+                    </div>
                 </div>
             )
         } else {
@@ -90,7 +89,7 @@ const CartView = () => {
                 <div className='container-cartView'>
                     <div className='row-cartView justify-center'>
                         <div>
-                            <h2 className='h2-cartView'>No hay productos en el carrito</h2>
+                            <h3 className='h3-cartView'>¡No tenés productos en el carrito para efectuar una compra!</h3>
                             <Button variant='contained' id="btnSeguirComprando-cartView" onClick={goBack}>Seguí comprando</Button>
                         </div>
                     </div>

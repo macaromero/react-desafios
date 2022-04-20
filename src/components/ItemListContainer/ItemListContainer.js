@@ -1,25 +1,27 @@
 import './ItemListContainer.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import ItemList from './ItemList/ItemList';
 import { Button, Menu, MenuItem } from '@mui/material';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { useNavigate } from 'react-router-dom';
-import getCategories from '../../services/categories.service';
+import CategoriesContext from '../../context/CategoriesContext';
 
 
 const ItemListContainer = ({cat_id}) => {
-    const [idCatActual, setIdCatActual] = useState();
-
-    useEffect(() => {
-        setIdCatActual(cat_id)
-    }, [cat_id])
-
-    const [categories, setCategories] = useState([]);
-    const [cat_actual, setCat_actual] = useState()
+    const {getCategories, categories, category, setCat} = useContext(CategoriesContext);
     const navigate = useNavigate();
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
+
+    useEffect(() => {
+        getCategories();
+        setCat(cat_id, categories);
+    }, [])
+
+    useEffect(() => {
+        setCat(cat_id, categories)
+    }, [cat_id])
 
 
     const handleCatClick = (event) => {
@@ -32,36 +34,12 @@ const ItemListContainer = ({cat_id}) => {
 
     const navigateToCat = (id) => {
         setAnchorEl(null);
-        navigate(`/categorias/${id}`);
+        navigate(`/categories/${id}`);
     };
 
     const backToProducts = () => {
-        navigate(`/productos`);
+        navigate(`/products`);
     };
-
-
-    const getCategoria = () => {
-        return categories.map((c) => {
-            if (c.id_categoria === idCatActual) {
-                setCat_actual(c.categoria);
-            } else if (idCatActual === null) {
-                setCat_actual("Categorías")
-            }
-            return cat_actual;
-        });
-    };
-
-    useEffect(() => {
-        getCategories().then(data => {
-            setCategories(data)
-        }).catch((e) => {
-            console.log(e)
-        });
-    }, [])
-
-    useEffect(() => {
-        getCategoria();
-    }, [cat_id, idCatActual, cat_actual]);
 
 
     return(
@@ -76,9 +54,8 @@ const ItemListContainer = ({cat_id}) => {
                         aria-expanded={open ? 'true' : undefined}
                         onClick={handleCatClick}
                         className='btn-itemDetailContainer'
-                        key={idCatActual}
                     >
-                        <ArrowRightIcon/> {cat_actual}
+                        <ArrowRightIcon/> {category}
                     </Button>
                     <Menu
                         id="basic-menu"
@@ -91,9 +68,11 @@ const ItemListContainer = ({cat_id}) => {
                     >
                         {categories.map((c) => {
                             const result = () => {
-                                if (idCatActual !== c.id_categoria) {
+                                if (category !== c.categoria) {
                                     return (
-                                        <MenuItem onClick={() => navigateToCat(c.id_categoria)} key={c.id_categoria} className='btn-itemDetailContainer'><ArrowRightIcon/> {c.categoria}</MenuItem>
+                                        <MenuItem onClick={() => navigateToCat(c.id_categoria)} key={c.id_categoria} className='btn-itemDetailContainer'>
+                                            <ArrowRightIcon/> {c.categoria}
+                                        </MenuItem>
                                     )
                                 }
                             }
@@ -102,7 +81,7 @@ const ItemListContainer = ({cat_id}) => {
                     </Menu>
                 </div>
             </div>
-            <ItemList id_cat={idCatActual}/>
+            <ItemList id_cat={cat_id}/>
         </div>  
     );
 };

@@ -1,19 +1,27 @@
 import { useState, useEffect } from 'react';
 import './ItemList.css';
 import Item from './Item/Item';
-import {getProducts} from '../../../services/products.service';
+import db from '../../../firebase';
+import { collection, getDocs } from 'firebase/firestore';
 
 
 const ItemList = ({id_cat}) => {
     const [products, setProducts] = useState([]);
     const [category, setCategory] = useState(false);
+
+    const getProducts = async() => {
+        const productsCollection = collection(db, 'products');
+        const productsSnapshot = await getDocs(productsCollection);
+        const productsList = productsSnapshot.docs.map((list) => {
+            let product = list.data()
+            product.id = list.id
+            return product
+        })
+        return setProducts(productsList)
+    }
     
     useEffect(() => {
-        getProducts().then(data => {
-            setProducts(data)
-        }).catch((e) => {
-            console.log(e)
-        });
+        getProducts()
     }, []);
 
     useEffect(() => {

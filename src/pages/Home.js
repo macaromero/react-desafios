@@ -1,13 +1,10 @@
 import './Pages.css';
-import ItemListContainer from "../components/ItemListContainer/ItemListContainer";
+import HomeView from '../components/HomeView/HomeView';
 
 const Home = () => {
     return (
         <main>
-            <div>
-                <h1>Esta es la home</h1>
-                <ItemListContainer cat_id={null}/>
-            </div>
+            <HomeView/>
         </main>
     )
 }

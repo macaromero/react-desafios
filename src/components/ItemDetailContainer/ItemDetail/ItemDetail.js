@@ -11,6 +11,7 @@ import Radio from '@mui/material/Radio';
 import ItemCount from '../../ItemListContainer/ItemList/Item/ItemCount/ItemCount'
 import { useNavigate } from 'react-router-dom';
 import CartContext from '../../../context/CartContext';
+import Tooltip from '@mui/material/Tooltip';
 
 const ItemDetail = ({props}) => {
 
@@ -58,25 +59,25 @@ const ItemDetail = ({props}) => {
         } else if (color === "Verde") {
             return teal[400]
         } else if (color === "Rosa") {
-            return pink[100]
+            return pink[200]
         } else if (color === "Rojo") {
             return red[400]
         } else if (color === "Anaranjado") {
-            return orange[400]
+            return orange[500]
         } else if (color === "Amarillo") {
-            return yellow[[500]]
+            return yellow[500]
         } else if (color === "Blanco") {
-            return grey[50]
+            return grey[300]
         } else if (color === "Camel") {
-            return brown[400]
+            return orange[300]
         } else if (color === "Suela") {
-            return brown[200]
+            return brown[400]
         } else if (color === "Camuflado") {
             return green[900]
         } else if (color === "Gris") {
             return grey[600]
         } else if (color === "Nude") {
-            return red[50]
+            return red[200]
         } else if (color === "Celeste") {
             return lightBlue[400]
         }
@@ -104,7 +105,7 @@ const ItemDetail = ({props}) => {
     const onAdd = (e, counter) => {
         e.stopPropagation();
         if (counter <= stock) {
-            setQuantity(counter);
+            setQuantity(true);
             const producto = {
                 id: id,
                 nombre: nombre,
@@ -167,10 +168,11 @@ const ItemDetail = ({props}) => {
                                 {color.map((c, i) => {
                                     return(
                                         <div className="col-itemDetail" key={c}>
-                                            <Radio {...controlProps(c)}
-                                            className="itemSelect-itemDetail" sx={{color: radioColor(c),
-                                            '&.Mui-checked': {color: radioColor(c)}}} id={i.toString()}
-                                            />
+                                            <Tooltip title={c}>
+                                                <Radio {...controlProps(c)}
+                                                className="itemSelect-itemDetail" sx={{color: radioColor(c),
+                                                '&.Mui-checked': {color: radioColor(c)}}} id={i.toString()}/>
+                                            </Tooltip>
                                         </div>
                                         )
                                     })
@@ -205,7 +207,7 @@ const ItemDetail = ({props}) => {
                                 {quantity === 0 ? (
                                     <ItemCount stock={stock} onAdd={onAdd}/>  
                                 ) : (
-                                    <Button variant="contained" className='btnBuy-itemDetail' onClick={endPurchase}>Comprar</Button>
+                                    <Button id='btnBuy-itemDetail' onClick={endPurchase}>Comprar</Button>
                                 )
                                 }
                             </div>

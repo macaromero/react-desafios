@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const CartWidget = () => {
-    const {cartProducts, removeProductFromCart, isCartEmpty, emptyCart} = useContext(CartContext);
+    const {cartProducts, removeProductFromCart, isCartEmpty, emptyCart, total, setTotal} = useContext(CartContext);
     const [counter, setCounter] = useState(0);
     const [anchorEl, setAnchorEl] = useState(null);
     const isOpen = Boolean(anchorEl);
@@ -54,6 +54,7 @@ const CartWidget = () => {
             setCounter(counter - 1)
             cartProducts[index].cantidad -= 1
             cartProducts[index].precioTotal = cartProducts[index].precioUnitario*cartProducts[index].cantidad
+            setTotal(total - cartProducts[index].precioUnitario)
         };
     };
 
@@ -63,6 +64,7 @@ const CartWidget = () => {
             setCounter(counter + 1)
             cartProducts[index].cantidad += 1
             cartProducts[index].precioTotal = cartProducts[index].precioUnitario*cartProducts[index].cantidad
+            setTotal(total + cartProducts[index].precioUnitario)
         };
     };
 
@@ -74,14 +76,6 @@ const CartWidget = () => {
           padding: '0 4px',
         },
     }));
-
-    const sumaTotal = () => {
-        let precioTotal = 0;
-        cartProducts.map(c => {
-            return precioTotal += c.precioTotal
-        })
-        return precioTotal
-    }
 
     const navigateToCart = (e) => {
         e.stopPropagation();
@@ -99,8 +93,8 @@ const CartWidget = () => {
             aria-expanded={isOpen || undefined}
             aria-haspopup="menu"
             >
-                <StyledBadge badgeContent={cartProducts.length} color="secondary">
-                    <ShoppingCartIcon />
+                <StyledBadge badgeContent={cartProducts.length} id='badge-cartWidget'>
+                    <ShoppingCartIcon id='cartIcon-cartWidget'/>
                 </StyledBadge>
             </IconButton>
             <MenuUnstyled
@@ -160,11 +154,11 @@ const CartWidget = () => {
                                                 <h4 className='nombreProd-cartWidget'>TOTAL:</h4>
                                             </div>
                                             <div className='col-cartWidget text-center pl-cartWidget'>
-                                                <h4 className='nombreProd-cartWidget'>${sumaTotal()}</h4>
+                                                <h4 className='nombreProd-cartWidget'>${total}</h4>
                                             </div>
                                         </div>
                                         <div className='row-cartWidget jcAround-cartWidget'>
-                                            <Button id='btnBuy-cartWidget' variant='contained' size='small' onClick={(e) => navigateToCart(e)}>Finalizar compra</Button>
+                                            <Button id='btnBuy-cartWidget' variant='contained' size='small' onClick={(e) => navigateToCart(e)}>Comprar</Button>
                                         </div>
                                         <div className='row-cartWidget jcAround-cartWidget'>
                                             <Button id='btnEmpty-cartWidget' variant='contained' color='error' size='small' onClick={(e) => emptyCart(e)}>Vaciar carrito</Button>

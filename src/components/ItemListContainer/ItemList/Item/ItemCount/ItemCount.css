@@ -22,7 +22,7 @@
     padding: 0;
     min-width: 40px;
     border-color: rgb(209, 166, 170) !important;
-    color: rgb(209, 166, 170) !important;
+    color: rgba(0, 0, 0, 0.5) !important;
 }
 
 .number-itemCount {
@@ -37,6 +37,9 @@
 
 #btnBuy-itemCount {
     margin: 0 2%;
-    background-color: rgb(235, 194, 198);
-    color: rgb(176, 124, 129);
+    background-color: transparent;
+    color: rgba(0, 0, 0, 0.5);
+    border-radius: 0;
+    border: 1px solid rgb(235, 194, 198);
+    box-shadow: none;
 }

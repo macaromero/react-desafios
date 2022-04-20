@@ -11,6 +11,7 @@ import { Button, FormControl, Radio, Select, MenuItem, InputLabel} from '@mui/ma
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { pink, green, brown, grey, orange, red, yellow, lightBlue, teal} from '@mui/material/colors';
+import Tooltip from '@mui/material/Tooltip';
 
 const Item = ({props}) => {
   const {addProductToCart} = useContext(CartContext)
@@ -60,25 +61,25 @@ const Item = ({props}) => {
 
   const radioColor = (color) => {
     if (color === "Negro") {
-        return grey[900]
+      return grey[900]
     } else if (color === "Marrón") {
         return brown[800]
     } else if (color === "Verde") {
         return teal[400]
     } else if (color === "Rosa") {
-        return pink[100]
+        return pink[200]
     } else if (color === "Rojo") {
         return red[400]
     } else if (color === "Anaranjado") {
-        return orange[400]
+        return orange[500]
     } else if (color === "Amarillo") {
-        return yellow[[500]]
+        return yellow[500]
     } else if (color === "Blanco") {
         return grey[300]
     } else if (color === "Camel") {
-        return brown[400]
+        return orange[300]
     } else if (color === "Suela") {
-        return brown[200]
+        return brown[400]
     } else if (color === "Camuflado") {
         return green[900]
     } else if (color === "Gris") {
@@ -119,7 +120,7 @@ const Item = ({props}) => {
 
 
   const navigateToDetail = () => {
-    navigate(`/productos/${id}`);
+    navigate(`/products/${id}`);
   };
 
   return (
@@ -155,10 +156,12 @@ const Item = ({props}) => {
               {color.map((c, i) => {
                 return(
                     <div className="col-item" key={c}>
+                      <Tooltip title={c}>
                         <Radio {...controlProps(c)}
                         className="itemSelect-item" sx={{color: radioColor(c),
                         '&.Mui-checked': {color: radioColor(c)}}}
                         onClick={(e) => handleColorChange(e)}  id={i.toString()}/>
+                      </Tooltip>
                     </div>
                     )
                 })

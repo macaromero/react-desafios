@@ -106,18 +106,23 @@
     color: rgba(0, 0, 0, 0.35) !important;
 }
 
-.btnBuy-itemDetail {
-    background-color: rgb(235, 194, 198) !important;
+#btnBuy-itemDetail {
+    background-color: transparent;
+    color: rgba(0, 0, 0, 0.5);
     width: 80%;
+    border-radius: 0;
+    border: 1px solid rgb(235, 194, 198);
 }
 
 .btn-itemDetail {
     margin-top: 10%;
     margin-left: 2%;
     text-align: start;
+    border-radius: 0;
 }
 
 .btnArrow-itemDetail {
     scale: 2;
     color: rgb(235, 194, 198);
+    border-radius: 0;
 }
