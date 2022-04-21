@@ -126,3 +126,17 @@
     color: rgb(235, 194, 198);
     border-radius: 0;
 }
+
+#snackbar-itemDetail {
+    position: unset;
+    justify-content: center;
+}
+
+#alert-itemDetail {
+    font-size: 1.2em;
+    width: 55%;
+}
+
+#o-hidden {
+    overflow: hidden;
+}

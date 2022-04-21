@@ -89,3 +89,17 @@
     flex-direction: column;
     margin-top: 6%;
 }
+
+#snackbar-item {
+    position: unset;
+    justify-content: center;
+}
+
+#alert-item {
+    font-size: 1.2em;
+    width: 55%;
+}
+
+#o-hidden {
+    overflow: hidden;
+}

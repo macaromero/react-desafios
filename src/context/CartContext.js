@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import {createContext, useState } from "react";
 
 const CartContext = createContext();
 
@@ -20,6 +20,7 @@ const CartProvider = ({children}) => {
             setCartProducts(cartProducts => [...cartProducts, product])
             setTotal(total + product.precioTotal)
         }
+        
     };
 
     const removeProductFromCart = (e, product) => {
