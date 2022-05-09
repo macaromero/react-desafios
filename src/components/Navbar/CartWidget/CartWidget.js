@@ -1,24 +1,45 @@
+//  IMPORTS  //
+
+// CSS
 import './CartWidget.css';
-import IconButton from '@mui/material/IconButton';
+
+// Material UI
+import { Badge, Button, IconButton } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { Badge, Button } from '@mui/material';
 import MenuUnstyled from '@mui/base/MenuUnstyled';
 import { styled } from '@mui/system';
-import { useContext, useState, useRef } from 'react';
-import CartContext from '../../../context/CartContext';
 import DeleteIcon from '@mui/icons-material/Delete';
+
+// React
+import { useContext, useState, useRef } from 'react';
+
+// react-router-dom
 import { useNavigate } from 'react-router-dom';
 
+// Context
+import CartContext from '../../../context/CartContext';
 
+
+//  COMPONENT  //
 const CartWidget = () => {
-    const {cartProducts, removeProductFromCart, isCartEmpty, emptyCart, total, setTotal} = useContext(CartContext);
+
+    // Llamado a context
+    const {cartProducts, removeProductFromCart, isCartEmpty, emptyCart, total, setTotal, amount, setAmount} = useContext(CartContext);
+
+    // Instancia de useNavigate
+    const navigate = useNavigate();
+
+    // Estados de seteo del contador, apertura y cierre de menú y botones
     const [counter, setCounter] = useState(0);
     const [anchorEl, setAnchorEl] = useState(null);
     const isOpen = Boolean(anchorEl);
     const buttonRef = useRef(null);
     const menuActions = useRef(null);
-    const navigate = useNavigate();
+    
 
+    //  FUNCTIONS   //
+
+    // Funciones de apertura y cierre de menú
     const handleButtonClick = (event) => {
         if (isOpen) {
         setAnchorEl(null);
@@ -48,12 +69,15 @@ const CartWidget = () => {
         };
     };
 
+
+    // Funciones para añadir y sustraer producto del carrito
     const substract = (e, index) => {
         e.stopPropagation();
         if (cartProducts[index].cantidad > 1) {
             setCounter(counter - 1)
             cartProducts[index].cantidad -= 1
-            cartProducts[index].precioTotal = cartProducts[index].precioUnitario*cartProducts[index].cantidad
+            cartProducts[index].precioTotal = cartProducts[index].precioUnitario*cartProducts[index].cantidad;
+            setAmount(amount - 1)
             setTotal(total - cartProducts[index].precioUnitario)
         };
     };
@@ -63,11 +87,21 @@ const CartWidget = () => {
         if (counter < stock) {
             setCounter(counter + 1)
             cartProducts[index].cantidad += 1
-            cartProducts[index].precioTotal = cartProducts[index].precioUnitario*cartProducts[index].cantidad
+            cartProducts[index].precioTotal = cartProducts[index].precioUnitario*cartProducts[index].cantidad;
+            setAmount(amount + 1)
             setTotal(total + cartProducts[index].precioUnitario)
         };
     };
 
+    // Función de enrutamiento para acceder al carrito
+    const navigateToCart = (e) => {
+        e.stopPropagation();
+        navigate('/cart');
+        close();
+    }
+
+
+    // Theme para el badge
     const StyledBadge = styled(Badge)(({ theme }) => ({
         '& .MuiBadge-badge': {
           right: -3,
@@ -77,12 +111,8 @@ const CartWidget = () => {
         },
     }));
 
-    const navigateToCart = (e) => {
-        e.stopPropagation();
-        navigate('/cart');
-        close();
-    }
 
+    //  HTML   //
     return(
         <div>
             <IconButton size="large"
@@ -93,7 +123,7 @@ const CartWidget = () => {
             aria-expanded={isOpen || undefined}
             aria-haspopup="menu"
             >
-                <StyledBadge badgeContent={cartProducts.length} id='badge-cartWidget'>
+                <StyledBadge badgeContent={amount} id='badge-cartWidget'>
                     <ShoppingCartIcon id='cartIcon-cartWidget'/>
                 </StyledBadge>
             </IconButton>

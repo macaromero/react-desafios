@@ -1,18 +1,32 @@
+//  IMPORTS  //
+
+// CSS
 import './HomeView.css'
+
+// Material UI
+import { Button } from '@mui/material';
+
+// Imágenes
 import bannerImg from '../../images/home/banner.png';
 import sandaliasImg from '../../images/home/sandalias.jpg';
 import zapatillasImg from '../../images/home/zapatillas.jpg';
-import { Button } from '@mui/material';
+
+// react-router-dom
 import { useNavigate } from 'react-router-dom';
 
 
+//  Component  //
 const HomeView = () => {
+
+    // Instancia useNavigate
     const navigate = useNavigate();
 
+    // Enrutamiento de botones
     const navigateProducts = () => {
         navigate('/products')
     }
 
+    //  HTML  //
     return (
         <div>
             <div className="container-homeView">
@@ -30,6 +44,7 @@ const HomeView = () => {
                     <div className="col-homeView justifyBottom-homeView">
                         <div className='overflow-homeView align-start'>
                             <h3 className='name-homeView'>Sandalias</h3>
+                            <div className='recuadro-homeView'></div>
                         </div>
                         <div className='overflow-homeView align-start'>
                             <p className='description-homeView'>
@@ -46,6 +61,9 @@ const HomeView = () => {
                     <div className="col-homeView justifyBottom-homeView">
                         <div className='overflow-homeView align-end'>
                             <h3 className='name-homeView'>zapatillas</h3>
+                            <div className='w-100 align-end'>
+                                <div className='recuadro-homeView'></div>
+                            </div>
                         </div>
                         <div className='overflow-homeView align-end'>
                             <p className='description-homeView'>

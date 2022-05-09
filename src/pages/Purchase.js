@@ -1,4 +1,7 @@
+// Import del CSS
 import './Pages.css';
+
+// Import del componente
 import PurchaseView from '../components/PurchaseView/PurchaseView'
 
 const Purchase = () => {

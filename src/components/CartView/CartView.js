@@ -1,29 +1,44 @@
-import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { Button } from '@mui/material';
+//  IMPORTS  //
+
+// CSS
 import './CartView.css';
-import { TableFooter } from '@mui/material';
-import { useContext } from 'react';
-import CartContext from '../../context/CartContext';
+
+// Material UI
+import { styled } from '@mui/material/styles';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableFooter, Button } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
+
+// React
+import { useContext } from 'react';
+
+// react-router-dom
 import { useNavigate } from 'react-router-dom';
 
+// Context
+import CartContext from '../../context/CartContext';
 
-const CartView = () => {   
+
+//  Component  //
+const CartView = () => {
+    
+    // Llamada a contexto
     const {cartProducts, removeProductFromCart, emptyCart, isCartEmpty, total} = useContext(CartContext);
+
+    // Instancia useNavigate
     const navigate = useNavigate();   
+
+    // Theme Material UI
     const StyledTableRow = styled(TableRow)(({ theme }) => ({
         '&:nth-of-type(even)': {
             backgroundColor: theme.palette.action.hover,
         },
     }));
 
+
+    //  FUNCTIONS  //
+
+    // Enrutamiento de botones
     const goBack = () => {
         navigate('/products');
     }
@@ -32,9 +47,11 @@ const CartView = () => {
         navigate('/purchase')
     }
 
-    const view = () => {
-        if (isCartEmpty === false) {
-            return (
+    
+    //  HTML  //
+    return (
+        <>
+            {!isCartEmpty ? (
                 <div className='container-cartView'>
                     <div className='row-cartView'>
                         <Button onClick={goBack} id='btnVolver-cartView'><ArrowLeftIcon/> Seguir comprando</Button>
@@ -83,9 +100,7 @@ const CartView = () => {
                         <Button onClick={buy} id='btnComprar-cartView'>Finalizar compra</Button>
                     </div>
                 </div>
-            )
-        } else {
-            return (
+            ):(
                 <div className='container-cartView'>
                     <div className='row-cartView justify-center'>
                         <div>
@@ -95,11 +110,9 @@ const CartView = () => {
                     </div>
                 </div>
             )
-        }
-    }
-    
-    return (
-        view()  
+
+            }
+        </> 
     )
 }
 

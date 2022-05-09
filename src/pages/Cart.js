@@ -1,5 +1,9 @@
-import CartView from "../components/CartView/CartView";
+// Import del CSS
 import './Pages.css';
+
+// Import del componente
+import CartView from "../components/CartView/CartView";
+
 
 const Cart = () => {
     return(

@@ -1,4 +1,7 @@
+// Import del CSS
 import './Pages.css';
+
+// Import del componente
 import ItemListContainer from "../components/ItemListContainer/ItemListContainer";
 
 const Productos = () => {

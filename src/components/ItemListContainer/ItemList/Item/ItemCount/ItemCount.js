@@ -1,11 +1,23 @@
-import React, {useState} from 'react';
-import Button from '@mui/material/Button';
+//  IMPORTS  //
+
+// CSS
 import './ItemCount.css';
 
+// Material UI
+import Button from '@mui/material/Button';
+
+// React
+import {useState} from 'react';
+
+
+//  COMPONENT   //
 const ItemCount = ({stock, onAdd}) => {
 
+    // State del contador
     const [counter, setCounter] = useState(1)
 
+
+    // Funciones para restar y sumar un producto
     const substract = (e) => {
         e.stopPropagation();
         if (counter > 1) {
@@ -21,6 +33,7 @@ const ItemCount = ({stock, onAdd}) => {
     };
 
 
+    //  HTML  //
     return(
         <div className='container-itemCount'>
             <div className='row-itemCount'>

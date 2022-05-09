@@ -1,13 +1,22 @@
+// Imports de React
 import { createContext, useState } from "react";
+
+// Imports de database & firestore
 import db from '../firebase';
 import { collection, getDocs } from "firebase/firestore";
 
+// Creación del context
 const CategoriesContext = createContext();
 
+//  CONTEXT   //
 const CategoriesProvider = ({children}) => {
+
+    // Estados para setear todas las categorías y la seleccionada
     const [category, setCategory] = useState('');
     const [categories, setCategories] = useState([]);
 
+
+    // Función para traer todas las categorías de la base de datos
     const getCategories = async () => {
         const categoriesCollection = collection(db, "categories");
         const categoriesSnapshot = await getDocs(categoriesCollection);
@@ -19,6 +28,7 @@ const CategoriesProvider = ({children}) => {
         return setCategories(categoriesList)
     }
 
+    // Función para setear la categoría actual
     const setCat = (cat_actual, categories) => {
         if (cat_actual !== null) {
             categories.map(c => {
@@ -30,7 +40,9 @@ const CategoriesProvider = ({children}) => {
             return setCategory('Categorías')
         }
     }
+    
 
+    // Data para enviar a los children
     const data = {
         category,
         setCategory,

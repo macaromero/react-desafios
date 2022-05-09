@@ -1,23 +1,49 @@
+//  IMPORTS  //
+
+// CSS
 import './ItemDetail.css';
-import {useContext, useState} from 'react';
-import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
-import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+
+// Material UI
+import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
+import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import { Button, Backdrop, Snackbar, Alert, MenuItem, FormControl, Select, Radio, Tooltip } from '@mui/material';
 import { pink, green, brown, grey, orange, red, yellow, lightBlue, teal} from '@mui/material/colors';
-import ItemCount from '../../ItemListContainer/ItemList/Item/ItemCount/ItemCount'
+
+// React
+import {useContext, useState} from 'react';
+
+// react-router-dom
 import { useNavigate } from 'react-router-dom';
+
+// Context
 import CartContext from '../../../context/CartContext';
+import LogInContext from '../../../context/LogInContext';
+
+// Component
+import ItemCount from '../../ItemListContainer/ItemList/Item/ItemCount/ItemCount'
 
 
+//  COMPONENT  //
 const ItemDetail = ({props}) => {
 
-    const {addProductToCart} = useContext(CartContext)
+    // Llamada a contexto
+    const {addProductToCart} = useContext(CartContext);
+    const {loggedIn} = useContext(LogInContext);
+
+    // Instancia de useNavigate
+    const navigate = useNavigate();
+
+
+    //  STATES  //
+
+    // Estados para manejar las props que recibe el componente
     const imagen = props.imagen || [];
     const color = props.color || [];
     const talle = props.talle || [];
     const imagenAlt = props.imagenAlt || [];
     const {id, nombre, id_categoria, categoria, precio, stock} = props;
 
+    // Estados para manejar los select, los menúes y el carrousel de imágenes
     const [colour, setColour] = useState('');
     const [size, setSize] = useState("");
     const [imgResultante, setImgResultante] = useState("");
@@ -27,15 +53,17 @@ const ItemDetail = ({props}) => {
     const [imgDimensions, setImgDimensions] = useState({height:0, width:0});
     const [selectedProperties, setSelectedProperties] = useState(true);
     const [open, setOpen] = useState(false);
-    const navigate = useNavigate();
+    const [loggedOpen, setLoggedOpen] = useState(false);
 
 
+    //  FUNCTIONS  //
+
+    // Funciones para abrir y cerrar los snackbars
     const handleSnackbarOpen = () => {
         setOpen(true);
         const body = document.querySelector("body")
         body.setAttribute("id", "o-hidden")
     };
-
     const handleSnackbarClose = (event, reason) => {
         if (reason === 'clickaway') {
             return;
@@ -45,6 +73,22 @@ const ItemDetail = ({props}) => {
         setOpen(false);
     };
 
+    const handleSnackbarLoggedOpen = () => {
+        setLoggedOpen(true);
+        const body = document.querySelector("body")
+        body.setAttribute("id", "o-hidden")
+    };
+    const handleSnackbarLoggedClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        const body = document.querySelector("body")
+        body.removeAttribute("id", "o-hidden")
+        setLoggedOpen(false);
+    };
+
+
+    // Funciones para modificar las selecciones de talle y color del usuario
     const handleSizeChange = (event) => {
         setSize(event.target.value)
     }
@@ -64,38 +108,72 @@ const ItemDetail = ({props}) => {
         inputProps: { 'aria-label': selectedColor }
     });
 
+
+    // Colores para el radio button
     const radioColor = (color) => {
-        if (color === "Negro") {
-            return grey[900]
-        } else if (color === "Marrón") {
-            return brown[800]
-        } else if (color === "Verde") {
-            return teal[400]
-        } else if (color === "Rosa") {
-            return pink[200]
-        } else if (color === "Rojo") {
-            return red[400]
-        } else if (color === "Anaranjado") {
-            return orange[500]
-        } else if (color === "Amarillo") {
-            return yellow[500]
-        } else if (color === "Blanco") {
-            return grey[300]
-        } else if (color === "Camel") {
-            return orange[300]
-        } else if (color === "Suela") {
-            return brown[400]
-        } else if (color === "Camuflado") {
-            return green[900]
-        } else if (color === "Gris") {
-            return grey[600]
-        } else if (color === "Nude") {
-            return red[200]
-        } else if (color === "Celeste") {
-            return lightBlue[400]
+        switch (color) {
+            case "Amarillo":
+                return yellow[500]
+                break;
+        
+            case "Anaranjado":
+                return orange[500]
+                break;
+
+            case "Blanco":
+                return grey[300]
+                break;
+        
+            case "Camel":
+                return orange[300]
+                break;
+
+            case "Camuflado":
+                return green[900]
+                break;
+        
+            case "Celeste":
+                return lightBlue[400]
+                break;
+
+            case "Gris":
+                return grey[600]
+                break;
+        
+            case "Marrón":
+                return brown[800]
+                break;
+
+            case "Negro":
+                return grey[900]
+                break;
+        
+            case "Nude":
+                return red[200]
+                break;
+
+            case "Rojo":
+                return red[400]
+                break;
+        
+            case "Rosa":
+                return pink[200]
+                break;
+
+            case "Suela":
+                return brown[400]
+                break;
+        
+            case "Verde":
+                return teal[400]
+                break;
+
+            default:
+                break;
         }
     }
 
+    // Funciones para establecer el tamaño de la imagen, crear parte del carrousel y utilizar las flechas para cambiar de imagen
     const onImgLoad = ({ target: img }) => {
         const { offsetHeight, offsetWidth } = img;
         setImgDimensions({height:offsetHeight, width:offsetWidth});
@@ -115,41 +193,64 @@ const ItemDetail = ({props}) => {
 
     const style = {"transform": `translateX(${positionCarousel}px)`};
 
+
+    // Función para añadir producto al carrito
     const onAdd = (e, counter) => {
         e.stopPropagation();
-        if ((colour !== '') && (size !== '')) {
-            if (counter <= stock) {
-                setQuantity(true);
-                const producto = {
-                    id: id,
-                    nombre: nombre,
-                    color: colour,
-                    talle: size,
-                    id_categoria: id_categoria,
-                    categoria: categoria,
-                    imagen: imgResultante,
-                    imagenAlt: altImgResultante,
-                    stock: stock,
-                    precioUnitario: precio,
-                    precioTotal:  precio*counter,
-                    cantidad: counter 
-                }
-                addProductToCart(producto);
-                setSelectedProperties(true)
-            }
+        if (!loggedIn) {
+            handleSnackbarLoggedOpen()
         } else {
-            setSelectedProperties(false);
-            handleSnackbarOpen()
-        }
+            if ((colour !== '') && (size !== '')) {
+                if (counter <= stock) {
+                    setQuantity(true);
+                    const producto = {
+                        id: id,
+                        nombre: nombre,
+                        color: colour,
+                        talle: size,
+                        id_categoria: id_categoria,
+                        categoria: categoria,
+                        imagen: imgResultante,
+                        imagenAlt: altImgResultante,
+                        stock: stock,
+                        precioUnitario: precio,
+                        precioTotal:  precio*counter,
+                        cantidad: counter 
+                    }
+
+                    addProductToCart(producto);
+                    setSelectedProperties(true)
+                };
+            } else {
+                setSelectedProperties(false);
+                handleSnackbarOpen()
+            };
+        };
     };
 
+
+    // Enrutamiento de botón
     const endPurchase = () => {
         navigate('/cart');
     }
-
     
+
+    //  HTML  //
     return(
         <>
+            {!loggedIn && (
+                <Backdrop
+                    sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                    open={loggedOpen}
+                    onClick={handleSnackbarLoggedClose}>
+                    <Snackbar open={loggedOpen} onClose={handleSnackbarLoggedClose} autoHideDuration={6000} id="snackbar-item">
+                        <Alert onClose={handleSnackbarLoggedClose} severity="error" id="alert-item">
+                            Tenés que ingresar a tu cuenta para comprar.
+                        </Alert>
+                    </Snackbar>
+                </Backdrop>
+            )}
+
             {!selectedProperties && (
                 <Backdrop
                 sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -164,9 +265,11 @@ const ItemDetail = ({props}) => {
             )}
 
             <div className="container-itemDetail">
-                <div className='rowBtn-itemDetail w-60' style={{top: imgDimensions.height/2}}>
-                        <Button onClick={moveLeft}><ArrowLeftIcon className='btnArrow-itemDetail'/></Button> 
-                        <Button onClick={moveRight}><ArrowRightIcon className='btnArrow-itemDetail'/></Button> 
+                <div className='containerBtn-itemDetail'>
+                    <div className='rowBtn-itemDetail' style={{top: imgDimensions.height/2}}>
+                        <Button onClick={moveLeft} id='btnMoveImg-itemDetail' color="secondary"><ChevronLeftRoundedIcon id='btnArrow-itemDetail'/></Button> 
+                        <Button onClick={moveRight} id='btnMoveImg-itemDetail' color="secondary"><ChevronRightRoundedIcon id='btnArrow-itemDetail'/></Button> 
+                    </div>
                 </div>
                 <div className="row-itemDetail space-between">
                     <div className="col-itemDetail w-60">
@@ -240,7 +343,14 @@ const ItemDetail = ({props}) => {
                                     {quantity === 0 ? (
                                         <ItemCount stock={stock} onAdd={onAdd}/>  
                                     ) : (
-                                        <Button id='btnBuy-itemDetail' onClick={endPurchase}>Comprar</Button>
+                                        <>
+                                            <ItemCount stock={stock} onAdd={onAdd}/>
+                                            <div className="container-itemDetail m-0">
+                                                <div className='rowBtn-itemDetail w-100'>
+                                                    <Button id='btnBuy-itemDetail' onClick={endPurchase} size='small'>Comprar</Button>
+                                                </div>
+                                            </div>
+                                        </>
                                     )
                                     }
                                 </div>

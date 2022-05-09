@@ -1,14 +1,28 @@
-import { useState, useEffect } from 'react';
+//  IMPORTS  //
+
+// CSS
 import './ItemList.css';
-import Item from './Item/Item';
+
+// React
+import { useState, useEffect } from 'react';
+
+// Database & Firestore
 import db from '../../../firebase';
 import { collection, getDocs } from 'firebase/firestore';
 
+// Component
+import Item from './Item/Item';
 
+
+//  COMPONENT  //
 const ItemList = ({id_cat}) => {
+    
+    // States de productos y categorías
     const [products, setProducts] = useState([]);
     const [category, setCategory] = useState(false);
 
+
+    // Función para traer a los productos de la base de datos
     const getProducts = async() => {
         const productsCollection = collection(db, 'products');
         const productsSnapshot = await getDocs(productsCollection);
@@ -19,7 +33,9 @@ const ItemList = ({id_cat}) => {
         })
         return setProducts(productsList)
     }
-    
+
+
+    // UseEffect para llamar a la función
     useEffect(() => {
         getProducts()
     }, []);
@@ -32,6 +48,8 @@ const ItemList = ({id_cat}) => {
         };
     }, [id_cat]);
 
+
+    //  HTML  //
     return(
         <div className="row-itemList">
             {

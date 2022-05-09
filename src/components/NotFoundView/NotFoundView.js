@@ -1,13 +1,27 @@
-import { Button } from "@mui/material";
+//  IMPORTS  //
+
+// CSS
 import './NotFoundView.css';
+
+// Material UI
+import { Button } from "@mui/material";
+
+// react-router-dom
 import { useNavigate } from "react-router-dom";
 
+
+//  COMPONENT   //
 const NotFound = () => {
+
+    // Instancia de useNavigate
     const navigate = useNavigate();
 
+    // Función de enrutamiento para volver a la home
     const navigateHome = () => {
         navigate('/')
     }
+
+    //  HTML   //
     return (
         <div className="container-notFound">
             <div className="row-notFound">

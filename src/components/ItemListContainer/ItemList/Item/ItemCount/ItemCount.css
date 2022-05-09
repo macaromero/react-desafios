@@ -18,6 +18,12 @@
     margin-bottom: 3%;
 }
 
+.col-itemCount {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
 .btn-itemCount {
     padding: 0;
     min-width: 40px;
@@ -27,12 +33,6 @@
 
 .number-itemCount {
     color: rgba(0, 0, 0, 0.54);
-}
-
-.col-itemCount {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
 }
 
 #btnBuy-itemCount {

@@ -21,13 +21,25 @@
     width: 35%;
 }
 
+.m-0 {
+    margin: 0;
+}
+
 .spaceAround-contactView {
     justify-content: space-around;
 }
 
 .title-contactView {
-    margin-top: 3%;
+    margin-top: 2%;
     text-transform: uppercase;
+}
+
+.recuadro-contactView {
+    background-color: rgb(235, 194, 198);
+    width: 5%;
+    height: 0.7vh;
+    margin-bottom: 5%;
+    margin-top: 0.4%;
 }
 
 #btnSend-contactView {

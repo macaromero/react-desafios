@@ -1,24 +1,40 @@
-import { useState, useEffect, useContext } from 'react';
-import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
-import ArrowRightIcon from '@mui/icons-material/ArrowRight';
-import Button from '@mui/material/Button';
-import ItemDetail from './ItemDetail/ItemDetail';
+//  IMPORTS  //
+
+// CSS
 import './ItemDetailContainer.css';
+
+// React
+import { useState, useEffect, useContext } from 'react';
+
+// react-router-dom
 import { useNavigate } from 'react-router-dom';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+
+// Database & Firestore
 import { doc, getDoc } from "firebase/firestore";
 import db from '../../firebase';
+
+// Componentes
+import ItemDetail from './ItemDetail/ItemDetail';
+import ButtonBar from '../ButtonBar/ButtonBar';
+
+// Context
 import CategoriesContext from '../../context/CategoriesContext';
 
 
+//  Component  //
 const ItemDetailContainer = ({id}) => {
-    const {getCategories, categories, setCat} = useContext(CategoriesContext);
-    const [product, setProduct] = useState({});
-    const navigate = useNavigate();
-    const [anchorEl, setAnchorEl] = useState(null);
-    const open = Boolean(anchorEl);
 
+    // Llamada a contexto
+    const {getCategories, categories, setCat} = useContext(CategoriesContext);
+
+    // States
+    const [product, setProduct] = useState({});
+
+    // Instancia de useNavigate
+    const navigate = useNavigate();
+
+
+    // UseEffect para llamar a los productos por categoría de la base de datos
     useEffect(() => {  
         getCategories()  
         setCat(id, categories) 
@@ -30,19 +46,7 @@ const ItemDetailContainer = ({id}) => {
     }, [id]);
 
 
-    const handleCatClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
-    const navigateToCat = (id_cat) => {
-        setAnchorEl(null);
-        navigate(`/categories/${id_cat}`);
-    };
-
+    // Función para llamar a los productos
     const getProduct = async () => {
         const docRef = doc(db, "products", id);
         const docSnap = await getDoc(docRef);
@@ -54,52 +58,13 @@ const ItemDetailContainer = ({id}) => {
         } else {
             navigate('/error')
         }
-    }
-
-    const backToProducts = () => {
-        navigate(`/products`);
     };
 
+
+    //  HTML  //
     return(
         <div className="container-itemDetailContainer">
-            <div className='row-itemDetailContainer'>
-                <Button className='btn-itemDetailContainer' onClick={backToProducts}><ArrowLeftIcon/> Volver</Button>
-                <div>
-                    <Button
-                        id="basic-button"
-                        aria-controls={open ? 'basic-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={open ? 'true' : undefined}
-                        onClick={handleCatClick}
-                        className='btn-itemDetailContainer'
-                        key={product.id_categoria}
-                    >
-                        <ArrowRightIcon/> {product.categoria}
-                    </Button>
-                    <Menu
-                        id="basic-menu"
-                        anchorEl={anchorEl}
-                        open={open}
-                        onClose={handleClose}
-                        MenuListProps={{
-                        'aria-labelledby': 'basic-button',
-                        }}
-                    >
-                        {categories.map((c) => {
-                            const result = () => {
-                                if (product.categoria !== c.categoria) {
-                                    return (
-                                        <MenuItem onClick={() => navigateToCat(c.id_categoria)} key={c.id_categoria} className='btn-itemDetailContainer'>
-                                            <ArrowRightIcon/> {c.categoria}
-                                        </MenuItem>
-                                    )
-                                }
-                            }
-                            return result()
-                        })}
-                    </Menu>
-                </div>
-            </div>
+            <ButtonBar category={product.categoria} categories={categories}/>
             <div className='row-itemDetailContainer'>
                 <ItemDetail props={product}/>
             </div>
