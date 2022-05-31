@@ -97,6 +97,7 @@ const CartWidget = () => {
     const navigateToCart = (e) => {
         e.stopPropagation();
         navigate('/cart');
+        window.scrollTo(0,0);
         close();
     }
 

@@ -38,7 +38,7 @@ const OrderProvider = ({children}) => {
     const getOrderByUserId = (id) => {
         getOrders()
         let userOrder = [];
-        const orders = ordersDb.map((o) => {
+        ordersDb.map((o) => {
             if (o.buyer.id === id) {
                 return userOrder.push(o)
             }
@@ -51,8 +51,7 @@ const OrderProvider = ({children}) => {
     const createOrder = async (objOrder, user_id) => {
         const orderDb = collection(db, 'orders');
         const orderDoc = await addDoc(orderDb, objOrder);
-        setOrderSuccess(orderDoc.id)
-        getOrderByUserId(user_id)
+        return orderDoc;
     }
 
 

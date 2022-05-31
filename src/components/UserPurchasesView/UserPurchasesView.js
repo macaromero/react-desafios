@@ -7,7 +7,7 @@ import './UserPurchasesView.css';
 import { Table, TableContainer, TableRow, TableCell, TableBody, TableHead, Button } from '@mui/material';
 
 // React
-import { useContext, Fragment, useState } from 'react';
+import { useContext, Fragment, useEffect } from 'react';
 
 // react-router-dom
 import { useNavigate } from 'react-router-dom';
@@ -21,7 +21,7 @@ import LogInContext from '../../context/LogInContext';
 const UserPurchasesView = () => {
 
     // Llamada a context
-    const {ordersByUserId} = useContext(OrderContext)
+    const {ordersByUserId, setOrdersByUserId} = useContext(OrderContext)
     const {loggedIn} = useContext(LogInContext);
 
     // Instancia de useNavigate
@@ -31,6 +31,38 @@ const UserPurchasesView = () => {
     const navigateProducts = () => {
         navigate('/products');
     }
+
+    const organizeOrders = () => {
+        const organized = ordersByUserId.sort((a, b) => {
+            a = new Date(a.date).toLocaleString('es-AR');
+            b = new Date(b.date).toLocaleString('es-AR');
+
+            if (b < a) {
+                return -1
+            };  
+
+            if (b > a) {
+                return 1
+            };
+
+            return 0;
+        })
+        const final = organized.map((item) => {
+            const [date] = item.date.split(" ");
+            item.date = date;
+            return item
+        });
+        
+        return setOrdersByUserId(final);
+    };
+
+
+    useEffect(() => {
+        if (ordersByUserId) {
+            organizeOrders();
+        }
+    }, []);
+
 
     //  HTML   //
     return (
@@ -60,7 +92,7 @@ const UserPurchasesView = () => {
                                     <Table sx={{ minWidth: 700 }} aria-label="customized table" id="table-userPurchasesView">
                                         <TableHead id="tHead-userPurchasesView">
                                             <TableRow className='tCell-userPurchasesView'>
-                                                <TableCell align="center">#</TableCell>
+                                                <TableCell align="center">Fecha</TableCell>
                                                 <TableCell align="center">Precio final</TableCell>
                                                 <TableCell align="center">Producto</TableCell>
                                                 <TableCell align="center">Color</TableCell>
@@ -73,7 +105,7 @@ const UserPurchasesView = () => {
                                             {ordersByUserId.map((o) => (
                                                 <Fragment key={o.id}>
                                                     <TableRow align="center">
-                                                        <TableCell component="th" scope="row" align="center" rowSpan={o.items.length + 1}>{o.id}</TableCell>
+                                                        <TableCell component="th" scope="row" align="center" rowSpan={o.items.length + 1}>{o.date}</TableCell>
                                                         <TableCell component="th" scope="row" align="center" rowSpan={o.items.length + 1}>${o.total}</TableCell>
                                                     </TableRow>
                                                     {o.items.map((i) => {

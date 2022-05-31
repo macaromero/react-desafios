@@ -25,7 +25,7 @@ const Purchase = () => {
     // Llamada a context
     const {cartProducts, total, isCartEmpty, emptyCart} = useContext(CartContext);
     const {user} = useContext(LogInContext);
-    const {createOrder, order, setOrder, orderSuccess, setOrderSuccess} = useContext(OrderContext);
+    const {createOrder, order, setOrder, orderSuccess, setOrderSuccess, getOrderByUserId} = useContext(OrderContext);
 
     // Instancia de useNavigate
     const navigate = useNavigate();
@@ -38,14 +38,27 @@ const Purchase = () => {
             ...order,
             buyer: user
         }
+        let orden;
         createOrder(objOrder, user.id)
-        emptyCart(e)
+            .then(res => {
+                return orden = res;
+            })
+            .finally(() => {
+                setOrderSuccess(orden.id);
+                getOrderByUserId(user.id);
+                emptyCart(e);
+            })
+            .catch((e) => {
+                console.log(`Ocurrió un error: ${e}`);
+                setOrderSuccess();
+            })
     };
 
     // Función de enrutamiento para volver a la sección de productos
     const goBack = () => {
         navigate('/products');
-        setOrderSuccess()
+        setOrderSuccess();
+        console.log(orderSuccess)
     }
 
 

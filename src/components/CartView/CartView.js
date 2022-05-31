@@ -41,10 +41,12 @@ const CartView = () => {
     // Enrutamiento de botones
     const goBack = () => {
         navigate('/products');
+        window.scrollTo(0,0);
     }
 
     const buy = () => {
-        navigate('/purchase')
+        navigate('/purchase');
+        window.scrollTo(0,0);
     }
 
     
